@@ -1,0 +1,124 @@
+D .
+D comp
+P D12221A9 bg.png
+P 9401CC40 blank.png
+P B03390E5 btn_close.png
+P 1F3929EA button.png
+P 6CC6DF97 checkbox.png
+P FB94CCF2 clip_num.png
+P F7B6B7D7 clip_selectBox.png
+P 755271AE clip_tree_arrow.png
+P 859FD34C clip_tree_folder.png
+P A0E3B8F9 combobox.png
+P 9EDA959E hscroll$bar.png
+P 1AB768D4 hscroll$down.png
+P 685261D3 hscroll$up.png
+P 274B8076 hscroll.png
+P E466EB1C hslider$bar.png
+P C4BECA54 hslider.png
+P 5EDC128C html.png
+P ACFFCCCF image.png
+P 5EDC128C label.png
+P 5EDC128C linkbutton.png
+P 9E4DD730 progress$bar.png
+P 3FD78E12 progress.png
+P BF898D6A radio.png
+P BF898D6A radiogroup.png
+P 8CFD9D35 tab.png
+P BDA71F88 textarea.png
+P BDA71F88 textinput.png
+P 52107B89 vscroll$bar.png
+P E26B933E vscroll$down.png
+P B9680947 vscroll$up.png
+P 7E990267 vscroll.png
+P E466EB1C vslider$bar.png
+P 2BFF7046 vslider.png
+D comp/index
+P B11ED8AF -1.png
+P C2568F9A -2.png
+P 9D5BFA94 -3.png
+P 88429588 -4.png
+P F0CF9E76 -5.png
+P 77E08093 1.png
+P 15DCA37A 2.png
+P 2921E7E7 3.png
+P D04313F6 4.png
+P 4B7E943B 5.png
+R D57CC2B4 Advertising position--BG.png
+P 2A6DA33B Check-in bar.png
+P 6E9D51C0 photo.png
+P FCCEF976 Recharge--button.png
+P 7D1700DE Segmenting line.png
+P A334B55A Shopping Mall--button.png
+P 1E832C5E Sign--button.png
+P 942DA074 Sign--icons.png
+R F0A0A854 首页--效果图.png
+R 39A9FA25 首页--标注.png
+D comp/number
+D comp/round
+D comp/user
+P BFC1F559 dress.png
+P 01D6EB14 exchange.png
+P 42DB49B0 fanhui.png
+P 13719BD1 head.png
+P F792EB8B Imazamox.png
+P CB842951 key.png
+P 4C3FBFF2 Recharge.png
+P 74B65718 user.png
+R 8C1CF610 我的--标注.png
+D comp/number/效果图
+R C4EFC737 战绩.png
+R 5D9FF432 首页.png
+D comp/round/alert
+R 93CFC5BE 2.jpg
+P D1281317 bg-拷贝.png
+P F62975E3 x.png
+R 473A72CF 弹窗.png
+R 6CAC43F8 遮罩.png
+P 37E7A835 金豆-拷贝.png
+D comp/round/board
+R 7D9FB791 4.jpg
+R 0B789E7B bg.png
+P EE1C6E8A chongzhi.png
+P 2019B611 chouma-zz.png
+P 996831FE chouma.png
+P 8F6BB206 circle1.png
+R E87E63EE dierceng.png
+P B2824A47 disanceng.png
+P 93EA1C7F ewai.png
+P 23C44B38 headbg.png
+P 6444EB53 icon.png
+P 2AC24DEB inner.png
+P 434E67CC jindoubg.png
+P 4C9EC705 middle.png
+P 505D0D9D outter.png
+P 33FD2432 qingchu.png
+P 83D2CFC9 ren.png
+P 590CB416 shuxin.png
+P 3F8E9DB7 shuyingjiu.png
+P 362E7064 you.png
+P 92417F7F youce.png
+P B68D1018 zhongjian.png
+R F4AD67DF zuiwai.png
+P C14E4969 zuo.png
+P 12D4DBCE zuoce.png
+D comp/round/效果图
+R 93CFC5BE 2.jpg
+R 7D9FB791 4 - 副本.jpg
+D comp/user/adress
+R 0C7834D2 3.2收货地址--标注.png
+P 61CF65A5 diqu.png
+P 73DB638A phon.png
+P A1951D3A user.png
+P C4374CF9 weizhi.png
+P 96F089D0 youbian.png
+R E3BED757 修改地址-标注.png
+D comp/user/modify
+R 876F5FC9 更改昵称--标注.png
+D comp/user/password
+R C59012E0 3.png
+P AE4F3BE2 yanjing.png
+D comp/user/shop
+R 49644178 4.0商城--标注.png
+P DAFD25A7 remen.png
+R 4C7D1846 是否兑换--标注.png

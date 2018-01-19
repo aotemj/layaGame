@@ -1,0 +1,456 @@
+syntax = "proto3";
+package proto_msg;
+option csharp_namespace = "Pb";
+
+//测试用，一个简单消息
+message Hello {
+    string Name = 1;
+	
+}
+
+enum STATUS {
+    FAIL = 0;       //失败
+    SUCCESS = 1;    //成功
+}
+
+enum GAME_TYPE {
+    NONE = 0;
+    MAHJONG = 1;
+    NIUNIU = 2;
+    DDZ = 3;
+	RUN = 4;
+	PAIGOW = 5;     //牌九
+	FISH = 6;    //捕鱼
+	NIUNIU100 = 100;    //牛牛百人场
+}
+
+enum ROOM_STATUS {
+    WAIT    = 0;
+    GAMING  = 1;
+    GAME_OVER   = 2;    //上一轮游戏已经结束
+}
+//离线保留位置，新玩家不能进
+enum SEAT_STATUS {
+    DEFAULT   = 0;    //默认
+    OFFLINE = 1;    //下线
+    LEAVE = 2;      //离开房间
+    SIT     = 3;
+    READY   = 4;        //举手，第二轮后准备也是这个
+    GAME_SIT = 5;     //游戏结束后，游戏中坐下状态
+}
+
+message RoomTypeInfo {
+    int32 type_id = 1;
+    int32 enter_limit = 2; //房间下限
+    int32 base_score = 3;  //底分
+    int32 online_count = 4; //在线人数
+}
+
+//连接后的第一个消息
+message CheckinRequest {
+    uint64 timestamp = 1;  //timestamp
+    int32 client_ver_id = 2;
+}
+//返回游戏初始数据，详细内容待定
+message CheckinResponse {
+    uint64 timestamp = 1;  //timestamp
+    repeated RoomTypeInfo nn_room_list = 2;
+}
+
+
+message HeartBeatRequest {
+    int32 heart_beat_id = 1;  //randint
+}
+message HeartBeatResponse {
+    int32 heart_beat_id = 1;  //randint
+}
+
+message PingRequest {
+    uint64 timestamp = 1;  //timestamp
+}
+
+message PingResponse {
+    uint64 timestamp = 1;  //timestamp
+}
+
+enum SEX {
+    UNKNOWN  = 0;
+    MALE    = 1;
+    FEMALE  = 2;
+}
+
+message BaseRoomInfo {
+    int32  creater_uid = 1;    //房主UID
+    int32  room_id = 2;
+    ROOM_STATUS  room_status = 3;    //房间状态
+    int32  total_round = 4; //几人局
+    int32  current_round = 5;  //当前轮数
+    bool    is_card_room = 6; //是否是房卡场，如果不是，则是金币场
+    int32   base_score = 7; //金币场时，房间的底分
+    int32   multiply = 8;  //倍数    欢乐斗地主有倍数 麻将也有倍数
+}
+
+//所有游戏中账户信息都用这个
+message GameUserInfo {
+    int32  uid = 1;
+    int32  seat_id = 2;
+    SEAT_STATUS  seat_status = 3;
+    string  nickname = 4; // 昵称
+    int32 avatar_id = 5;
+    string avatar_url = 6;  //微信头像
+
+    SEX    sex      = 7;
+    string  ip  = 8;
+    int32  score   = 9;     //如果在玩游戏，当前游戏的分数
+    int32   bag_coin_count = 10;    //当前用户金币（银两）数
+    int32   bank_coin_count = 11;    //银行金币数
+    int32   room_card_count = 12;    //房卡数
+
+    repeated    int32  out_card_list   = 13;     //已出的牌列表  按出牌顺序    牛牛中，已开个牌的玩家，牌也在这里显示
+    int32  remain_count    = 14;   //剩余牌张数 斗地主、麻将需要
+    int32  poker_type = 15;  //牛牛、炸金花都要，牛里的牛几...炸金花里的牌型
+    int32   bank_multiple = 16;     //牛牛要，抢庄时报的 庄家倍数
+    int32   player_multiple = 17;   //牛牛要，做为闲家时报的 闲家倍数  斗地主叫分的分数，也放这里(0,1,2,3分)
+
+    bool    is_witness = 18;    //是否是旁观玩家
+
+    int32   current_chip = 19;      //炸金花的筹码数
+    bool    is_checked  = 20;       //炸金花是否已经看过牌
+    bool    is_fold = 21;           //炸金花是否弃过牌
+    bool is_lose = 22; // 炸金花是否输牌
+    bool    is_banker = 23;     //是否是庄家
+}
+
+
+message GameOverUserInfo {
+    int32  seat_id = 1;
+    SEAT_STATUS  seat_status = 2;
+    int32  round_score = 3; //当前轮分数
+    int32  total_score = 4; //当前总分
+    int32 round_rank = 5;    //当前轮名次
+    int32 total_rank = 6;    //总名次
+    repeated    int32  hand_card_list   = 7;   //剩余未出的牌
+    int32  bag_coin_count = 8;  //游戏的金币数    金币场游戏需要
+    int32  room_card_count = 9;  //房卡数
+    bool    is_robot = 10;   //此局此玩家是否托管出牌
+}
+
+message RegisterRequest {
+    string username    = 1;     //电话号码
+    string passwd      = 2;
+    string nickname    = 3;     //用户呢称
+    int32   valid_code = 4;     //短信验证码
+}
+message RegisterResponse {
+    STATUS status = 1;
+    string msg = 2;    //注册失败后的失败消息
+    GameUserInfo user_info = 3;
+}
+//检查昵称是否可用
+message NicknameCheckRequest {
+    string nickname = 1;
+}
+message NicknameCheckResponse {
+    STATUS status = 1;
+    string msg = 2;
+}
+
+//手机短信的作用
+enum TelephoneCodeType {
+    REGISTER = 0;       //注册用
+    FIND_PASSWORD = 1;  //找回密码用
+}
+//发送手机短信验证码的请求
+message TelephoneCodeRequest {
+    string telephone = 1;
+    TelephoneCodeType   code_type = 2;
+}
+message TelephoneCodeResponse {
+    STATUS status = 1;
+    string msg = 2;
+}
+
+//找回密码
+message FindPasswordRequest {
+    string telephone    = 1;     //电话号码
+    int32   valid_code = 2;     //短信验证码
+    string  new_passwd      = 3;
+}
+message FindPasswordResponse {
+    STATUS status = 1;
+    string msg = 2;
+}
+//修改密码
+message ModifyPasswdRequest {
+    string old_passwd = 1;
+    string new_passwd = 2;
+}
+message ModifyPasswdResponse {
+    STATUS status = 1;
+    string msg = 2;    //登录失败后的失败消息
+}
+
+message ModifyNicknameRequest {
+    string nickname = 1;
+}
+message ModifyNicknameResponse {
+    STATUS status = 1;
+    string msg = 2;    //登录失败后的失败消息
+}
+message ModifyAvatarRequest {
+    int32 avatar_id = 1;        //修改avatar_id
+}
+message ModifyAvatarResponse {
+    STATUS status = 1;
+    string msg = 2;    //登录失败后的失败消息
+    int32 avatar_id = 3;        //新的avatar_id
+}
+
+enum CHANNEL_TYPE {
+    TELEPHONE   = 0;
+    WEIXIN  = 1;
+}
+
+message LoginRequest {
+    CHANNEL_TYPE channel   = 1;
+    string username    = 2;    //微信ID,电话号码
+    string nickname    = 3;
+    string avatar_url = 4;  //微信头像
+    string passwd      = 5;
+    SEX    sex         = 6;
+    string dev_name    = 7;
+    string dev_number  = 8;    //序列号
+}
+message LoginResponse {
+    STATUS status = 1;
+    string msg = 2;    //登录失败后的失败消息    如果请求代理登录，但用户不是代理，返回错误信息
+    GameUserInfo user_info = 3;
+    int32   open_room_id = 4;
+    int32   game_room_id = 5;
+    int32   unread_msg_count = 7;
+}
+
+//加入房间前，检查房间类型消息
+message RoomCheckRequest {
+    int32 room_id = 1;  //房间ID
+}
+message RoomCheckResponse {
+    STATUS status = 1;
+    string msg = 2;
+    int32   game_type_id = 3;   //游戏类型
+}
+
+
+
+//用户在异地登录，当前用户被踢下线通知，这里会主动断开服务器连接，不要自动重连
+message UserKickOutMessage {
+    string ip = 1;
+}
+
+//游戏内滚动消息
+message GameRollNoticeItem {
+    int32 id = 1; //主键，游戏中不用
+    string content = 2;    //消息内容
+}
+message GameRollNoticeBroadcast {
+    repeated GameRollNoticeItem notice_list = 1;  //广播列表，可能多个
+}
+
+//个人消息类处理
+message AuthMessageContent {
+    int32 id = 1;
+    bool is_read = 2;
+    string title = 3;
+    string content = 4;
+    string create_time = 5;
+}
+//个人消息(有的叫公告)列表
+message AuthMessageRequest {
+    int32 page_index = 1;
+}
+message AuthMessageResponse {
+    STATUS status = 1;
+    string msg = 2;
+    int32 page_index = 3;
+    int32 page_count = 4;
+    repeated AuthMessageContent msg_list = 5;
+}
+//置个人消息为已读
+message AuthMessageReadRequest {
+    int32 msg_id = 1;
+}
+message AuthMessageReadResponse {
+    STATUS status = 1;
+    string msg = 2;
+}
+//收到新的个人消息通知
+message AuthMessageNotification {
+    AuthMessageContent msg_content = 1;
+}
+
+//其他玩家进入，退出房间，准备好游戏的广播消息
+message RoomUserInfoBroadcast {  // 房间玩家收到其玩家状态消息
+    int32 room_id = 1;
+    GameUserInfo user_info = 2;
+}
+
+
+enum RoomChatType {
+    TEXT = 0;
+    TEXT_ID = 1;
+    VOICE = 2;
+    MOVIE_CLIP = 3;
+    ACTION = 4;
+}
+//房间聊天，发语音，动画
+message RoomChatRequest {
+    RoomChatType  msg_type = 1;   //0:文字  1:文字ID  2:语音    3:动画序列  4:动作
+    string  content = 2;    //文字消息内容，语音URL，动画，动作ID
+    int32  target_uid  = 3;    //针对性的消息，对方的UID
+    int32  seconds = 4;    //语音消息的时长
+    bytes  voice_byte = 5;  //前期语音有stream广播时，这里是语音的byte文件流
+    int32  audio_length = 6;
+}
+message RoomChatResponse {
+    STATUS  status = 1;    //1:成功 -1:失败
+    string  msg = 2;        //失败时的失败原因
+}
+message RoomChatBroadcast {
+    RoomChatType  msg_type = 1;
+    string  content = 2;    //文字消息内容，ID，语音URL，
+    int32  from_uid  = 3;
+    int32  target_uid  = 4;    //针对性的消息，对方的UID
+    int32  seconds = 5;    //语音消息时长
+    bytes  voice_byte = 6;  //前期语音有stream广播时，这里是语音的byte文件流
+    int32  audio_length = 7;
+}
+
+
+//离开房间
+message RoomLeaveRequest {
+    int32 room_id = 1;
+}
+message RoomLeaveResponse {    //可能会失败
+    STATUS  status = 1;    //1:成功 0:失败
+    string  msg = 2;        //失败时的失败原因
+}
+//准备开始，举手之类
+message RoomReadyRequest {
+    int32 room_id = 1;
+}
+message RoomReadyResponse {    //可能会失败
+    STATUS  status = 1;    //1:成功 0:失败
+    string  msg = 2;        //失败时的失败原因
+}
+
+//历史分数
+message HistoryScoreItem {
+    int32 round_id = 1; //第X局
+    repeated int32 score_round_list = 2;   //每个seat的分数，按1,2,3,4...顺序，不再发seat_id
+}
+
+//微信客服号 QQ群客服号  下载链接
+message CommonInfoRequest {
+}
+message CommonInfoResponse {
+    string  weixin_kefu = 1;
+    string  qq_kefu = 2;
+    string  download_url = 3;
+}
+
+//领取第N次的签到奖励    循环领取    2、领取七次后从头开始。
+//第一次5000金币、第二次6000金币、第三次7000金币、第四次8000金币、第五次9000金币、第六次1万金币、第七次1.2万金币
+message SignRewardRequest {
+    int32   sign_reward_times = 1;  //该领取的，第几次的签到奖励
+}
+message SignRewardResponse {
+    STATUS  status = 1;
+    string  msg = 2;
+    int32   bag_coint_count = 3;    //当前背包数
+    int32   reward_count = 4;       //领取到的奖励数
+}
+
+//领取救济金
+//1、金币少于1万状态下，自动弹出领取界面，（在大厅、或者在游戏内巨额可弹出）
+//2、每天只能领取两次，时间间隔最少为5分钟。领取救济金金额为1万金币。
+message GetReliefMoneyRequest {
+}
+message GetReliefMoneyResponse {
+    STATUS  status = 1;
+    string  msg = 2;
+    int32   bag_coint_count = 3;    //当前背包数
+    int32   relief_coin_count = 4;       //领取到的救济金数
+}
+
+
+//代理转账
+message AgentTranferRequest {
+    int32   to_uid = 1; //对方UID
+    int32   room_card_count = 2;    //转账房卡数
+    int32  coin_count  = 3;        //转账金币
+}
+message AgentTranferResponse {
+    STATUS  status = 1;    //1:成功 -1:失败
+    string  msg = 2;        //失败时的失败原因
+    int32   room_card_count = 3;    //转账房卡数
+    int32  coin_count  = 4;        //转账金币
+    int32   new_room_card_count = 5;    //转账后，账房剩余房卡数
+    int32   new_bag_coin_count = 6;     //剩余背包金币数
+}
+
+
+//商城系统接口
+message GoodsItem {
+    int32   id = 1;
+    int32   price = 2;    //价格，需要购物卡数量
+    string  title = 3;
+    string  img_url = 4;
+    string  remark = 5;     //简介
+}
+message MallItemListRequest {
+    int32 page_index = 1;
+}
+
+message MallItemListResponse {
+    STATUS status = 1;
+    string msg = 2;
+    int32 page_index = 3;
+    int32 page_count = 4;
+    repeated GoodsItem item_list = 5;
+}
+
+//兑换下单接口
+message MallOrderRequest {
+    int32   goods_id = 1;   //要兑换的商品ID
+    string  real_name = 2;  //收货人姓名
+    string  telephone = 3;  //收货人电话
+    string  address = 4;  //收货地址
+    string  weixin  = 5;    //微信号
+}
+message MallOrderResponse {
+    STATUS status = 1;
+    string msg = 2;
+    int32 bag_coin_count = 3;  //背包剩余金币数
+}
+//定单列表接口
+message OrderItem {
+    string  goods_title = 1;
+    string  goods_img_url = 2;
+    string  real_name = 3;  //收货人姓名
+    string  telephone = 4;  //收货人电话
+    string  address = 5;  //收货地址
+    string  remark = 6;     //快递定单号等信息
+    string  order_time = 7; //下单时间
+    string  weixin  = 8;    //微信号
+}
+
+message MallOrderListRequest {
+    int32 page_index = 1;
+}
+message MallOrderListResponse {
+    STATUS status = 1;
+    string msg = 2;
+    int32 page_index = 3;
+    int32 page_count = 4;
+    repeated OrderItem order_list = 5;
+}

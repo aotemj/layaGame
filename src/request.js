@@ -1,15 +1,12 @@
 Luck.buffer2Object = function (msg) {
-    if (typeof msg == 'string') {
-        return msg;
-    } else {
-        var b = new Laya.Byte();
-        b.clear();
-        b.writeArrayBuffer(msg);//把接收到的二进制数据读进byte数组便于解析。
-        b.pos = 0;//设置偏移指针；
-        var str = b.getUTFBytes();
-        var obj = JSON.parse(str)
-        return obj;
-    }
+    var b = new Laya.Byte();
+    b.clear();
+    b.writeArrayBuffer(msg);//把接收到的二进制数据读进byte数组便于解析。
+    b.pos = 0;//设置偏移指针；
+    msg_uint8s = b._u8d_;
+    id_arr = msg_uint8s.subarray(0,2)
+    data_arr = msg_uint8s.subarray(2, msg.length)
+    return [Uint8Array2Int(id_arr), data_arr]
 };
 
 /**
@@ -34,23 +31,16 @@ Luck.connect = function (option) {
     var err = option.err || interface;
     var close = option.close || interface;
     var open = option.open || interface;
-    var data = option.data || '';
+    var data = option.data;
     var debug = option.debug || false;
  
     function __debug() {
         if (debug) {
             for (var i = 0, len = arguments.length; i < len; i++) {
-                if (arguments[i]['HeartBeatRequest'] == null) {
-                    console.log(arguments[i]);
-                }
+                console.log(arguments[i]);
             }
         }
     }
-    
-    if (typeof data != 'string' && isNaN(new Number(data))) {
-        data = JSON.stringify(data);
-    }
-
 
     var b = this.byte = new Laya.Byte();
     this.byte.endian = Laya.Byte.BIG_ENDIAN;
@@ -65,26 +55,28 @@ Luck.connect = function (option) {
     this.socket.on(Laya.Event.ERROR, this, errorHandler);
 
     function openHandler(event) {
-
-        __debug("open:", event);
-        __debug("send:", data);
+        // console.log("openHandler");
+        // __debug("open:", event.currentTarget);
+        // __debug("send:", typeof data);
         open();
-        s.send(data);
+        //s.send(data);
     }
     function receiveHandler(msg) {
         ///接收到数据触发函数
-        // __debug('receive raw data:', msg);
-
-        if (typeof msg != 'string') {
-            msg = Luck.buffer2Object(msg);
+        msg_arr = Luck.buffer2Object(msg);
+        msg_id = msg_arr[0]
+        msg_buf = msg_arr[1]
+        if (msg_id != 3) {
+            __debug('receive data:', msg_id, Pb.getObjById(msg_id).decode(data_arr));
         }
-        receive(msg);
+        
         Luck.handlers.forEach(function (ele) {
             var key = ele.getKey();
-            if (msg[key]) {
-                ele.handle(msg, key);
+            if (msg_id == key) {
+                ele.handle(msg_buf);
             }
         });
+        receive(msg);
     }
     function closeHandler(e) {
         //关闭事件
@@ -99,9 +91,6 @@ Luck.connect = function (option) {
 
     return new function () {
         this.send = function (data) {
-            if (typeof data != 'string' && isNaN(new Number(data))) {
-                data = JSON.stringify(data);
-            }
             s.send(data);
         };
     };

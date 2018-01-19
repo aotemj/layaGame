@@ -47,9 +47,6 @@ var Luck = {
         Luck.alertView.y = (Laya.stage.height - Luck.alertView.height) / 4 + 50
     },
     send: function (data) {
-        if (data['HeartBeatResponse'] == null) {
-            console.log('发送的数据：', data)
-        }
         Luck.sender.send(data);
     },
     handlers: [],

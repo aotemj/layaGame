@@ -6,8 +6,8 @@ Luck.Handler = (function(){
 
     __proto = Handler.prototype;
 
-    __proto.handle = function(msg,key){
-        this.handleFunc(msg,key);
+    __proto.handle = function(msg){
+        this.handleFunc(msg);
     };
 
     __proto.getKey = function(){
@@ -16,3 +16,18 @@ Luck.Handler = (function(){
 
     return Handler;
 })();
+
+
+var h = new Luck.Handler(Pb.Id.CheckinResponse, function (msg) {
+    Luck.connectSuccess = 1
+    var message = Pb.getObjById(Pb.Id.CheckinResponse).decode(data_arr);
+    console.log("网络延迟", parseInt(new Date().getTime()/1000) - message.timestamp)
+})
+Luck.addHandle(h);
+
+//心跳
+Luck.addHandle(new Luck.Handler(Pb.Id.HeartBeatRequest, function (msg) {
+    var message = Pb.getObjById(Pb.Id.HeartBeatRequest).decode(data_arr);
+    var resp = Pb.HeartBeatResponse.create({heartBeatId: message.heartBeatId });
+    Luck.send(packPbMsg2(Pb.Id.HeartBeatResponse, Pb.HeartBeatResponse.encode(resp).finish()));
+}));

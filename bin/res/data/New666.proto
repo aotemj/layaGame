@@ -1,0 +1,133 @@
+syntax = "proto3";
+import "Common.proto";
+
+package proto_msg;
+option csharp_namespace = "Pb";
+
+
+enum New666Pos {
+    DICE_SINGLE = 0;
+    DICE_DOUBLE = 1;
+    DICE_BIG = 2;
+    DICE_SMALL = 3;
+
+    DICE_POINT1 = 11;
+    DICE_POINT2 = 12;
+    DICE_POINT3 = 13;
+    DICE_POINT4 = 14;
+    DICE_POINT5 = 15;
+    DICE_POINT6 = 16;
+
+    DICE_SUM3 = 21;
+    DICE_SUM4 = 22;
+    DICE_SUM5 = 23;
+    DICE_SUM6 = 24;
+    DICE_SUM7 = 25;
+    DICE_SUM8 = 26;
+    DICE_SUM9 = 27;
+    DICE_SUM10 = 28;
+    DICE_SUM11 = 29;
+    DICE_SUM12 = 30;
+    DICE_SUM13 = 31;
+    DICE_SUM14 = 32;
+    DICE_SUM15 = 33;
+    DICE_SUM16 = 34;
+    DICE_SUM17 = 35;
+    DICE_SUM18 = 36;
+
+    DICE_TRIPLE1 = 41;
+    DICE_TRIPLE2 = 42;
+    DICE_TRIPLE3 = 43;
+    DICE_TRIPLE4 = 44;
+    DICE_TRIPLE5 = 45;
+    DICE_TRIPLE6 = 46;
+    DICE_TRIPLE7 = 47;
+}
+
+message New666ChipInfo {
+    int32 pos_single = 1;
+    int32 pos_double = 2;
+    int32 pos_big = 3;
+    int32 pos_small = 4;
+
+    int32 pos_point1 = 5;
+    int32 pos_point2 = 6;
+    int32 pos_point3 = 7;
+    int32 pos_point4 = 8;
+    int32 pos_point5 = 9;
+    int32 pos_point6 = 10;
+
+    int32 pos_sum3 = 11;
+    int32 pos_sum4 = 12;
+    int32 pos_sum5 = 13;
+    int32 pos_sum6 = 14;
+    int32 pos_sum7 = 15;
+    int32 pos_sum8 = 16;
+    int32 pos_sum9 = 17;
+    int32 pos_sum10 = 18;
+    int32 pos_sum11 = 19;
+    int32 pos_sum12 = 20;
+    int32 pos_sum13 = 21;
+    int32 pos_sum14 = 22;
+    int32 pos_sum15 = 23;
+    int32 pos_sum16 = 24;
+    int32 pos_sum17 = 25;
+    int32 pos_sum18 = 26;
+
+    int32 pos_triple1 = 31;
+    int32 pos_triple2 = 32;
+    int32 pos_triple3 = 33;
+    int32 pos_triple4 = 34;
+    int32 pos_triple5 = 35;
+    int32 pos_triple6 = 36;
+    int32 pos_triple7 = 37;
+}
+
+message New666Result {
+    int32   result1_pos = 1;
+    int32   result2_pos = 2;
+    int32   result3_pos = 3;
+    int32   result4_pos = 4;
+    int32   result5_pos = 5;
+}
+
+
+message New666EnterRoomRequest {
+}
+message New666EnterRoomResponse {
+    STATUS  status  = 1;    //1:成功  -1:失败
+    string  msg = 2;
+    int32  seat_id = 3;
+    repeated    GameUserInfo    user_info_list = 4;
+    New666ChipInfo   table_chip = 5;
+    New666ChipInfo   own_chip = 6;
+    int32   bet_remain_secs = 7;
+    repeated New666Result result_list = 8;
+}
+
+//可下100, 1000, 1万
+message New666BetRequest {
+    New666Pos   bet_pos = 1;
+    int32   bet_count = 2; //下注数
+}
+message New666BetResponse {
+    STATUS  status  = 1;    //1:成功  -1:失败
+    string  msg = 2;
+    New666ChipInfo   table_chip = 3;
+    New666ChipInfo   own_chip = 4;
+    repeated    int32   available_bet_list = 5; //可下的筹码列表   最多下注20万
+    int32   coin_count = 6;
+}
+message New666BetBroadcast {
+    New666Pos   bet_pos = 1;
+    int32   bet_count = 2;
+    New666ChipInfo   table_chip = 3;
+}
+
+message New666GameOverBroadcast {
+    repeated GameOverUserInfo user_list = 1;
+    int32   coin_count = 3;
+    New666Result    result = 4;
+}
+
+

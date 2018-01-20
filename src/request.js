@@ -66,14 +66,15 @@ Luck.connect = function (option) {
         msg_arr = Luck.buffer2Object(msg);
         msg_id = msg_arr[0]
         msg_buf = msg_arr[1]
+        msg_decode = Pb.getObjById(msg_id).decode(msg_buf)
         if (msg_id != 3) {
-            __debug('receive data:', msg_id, Pb.getObjById(msg_id).decode(data_arr));
+            __debug('receive data:', msg_decode);
         }
         
         Luck.handlers.forEach(function (ele) {
             var key = ele.getKey();
             if (msg_id == key) {
-                ele.handle(msg_buf);
+                ele.handle(msg_decode);
             }
         });
         receive(msg);

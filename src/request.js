@@ -68,7 +68,7 @@ Luck.connect = function (option) {
         msg_buf = msg_arr[1]
         msg_decode = Pb.getObjById(msg_id).decode(msg_buf)
         if (msg_id != 3) {
-            __debug('receive data:', msg_decode);
+            __debug(msg_decode);
         }
         
         Luck.handlers.forEach(function (ele) {

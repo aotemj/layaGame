@@ -50,6 +50,12 @@ var IndexView = (function (_super) {
             parent: this.panel2
         })
 
+
+      
+
+    }
+    _prototype.aa = function(){
+        console.log(1)
     }
     // 跑马灯go
     _prototype.hourseGo = function (params) {
@@ -90,7 +96,6 @@ var IndexView = (function (_super) {
         // 移除当前视图
 
         if (tab.tag > 1) {
-
 
             Luck.clearTimer()
             Luck.indexView.removeSelf()

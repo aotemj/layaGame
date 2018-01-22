@@ -54,6 +54,20 @@ P 1E832C5E Sign--button.png
 P 942DA074 Sign--icons.png
 R F0A0A854 首页--效果图.png
 R 39A9FA25 首页--标注.png
+D comp/login
+R A7340444 bg.png
+P D81ADEF2 checked.png
+P D5F17D65 Cipher--icons.png
+P A565BFCD earth--icons.png
+P 8CD0D437 Eye-icons.png
+P 6E1F2DD0 logo.png
+P 6E6E6283 Mobile-icon.png
+R 0076631F Segmenting line.png
+P E67A2E2B Selection box.png
+P B891F863 Verification-Code--icons.png
+R 85A7CF0F 标注--登录页.png
+R 0468ED16 注册页.png
+R 16274CCF 登录页.png
 D comp/number
 D comp/round
 D comp/user
@@ -78,13 +92,14 @@ R 6CAC43F8 遮罩.png
 P 37E7A835 金豆-拷贝.png
 D comp/round/board
 R 7D9FB791 4.jpg
+P 75536FB3 back.png
 R 0B789E7B bg.png
 P EE1C6E8A chongzhi.png
 P 2019B611 chouma-zz.png
 P 996831FE chouma.png
 P 8F6BB206 circle1.png
 R E87E63EE dierceng.png
-P B2824A47 disanceng.png
+P 87446F47 disanceng.png
 P 93EA1C7F ewai.png
 P 23C44B38 headbg.png
 P 6444EB53 icon.png

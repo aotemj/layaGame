@@ -12,12 +12,12 @@ var Luck = {
     url: 'ws://192.168.1.108:3573',
     baseUrl: '192.168.1.138/upload/',
     alertTimeoutArr: [],
-    currentPage:-1,
+    currentPage: -1,
     interface: function () { },
     version: 4,
-    timerArr:[],
-    clearTimer:function(){
-        for(var i=0;i<this.timerArr.length;i++){
+    timerArr: [],
+    clearTimer: function () {
+        for (var i = 0; i < this.timerArr.length; i++) {
             clearInterval(this.timerArr[i])
         }
     },
@@ -76,5 +76,5 @@ var Luck = {
     addHandler: function (handler) {
         Luck.addHandle(handler);
     },
-
+     
 }

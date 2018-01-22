@@ -1,0 +1,117 @@
+syntax = "proto3";
+import "Common.proto";
+
+package proto_msg;
+option csharp_namespace = "Pb";
+
+
+enum Lucky12Pos {
+    L_NONE = 0;
+    L_BOY = 1;
+    L_GIRL = 2;
+
+    L_FU = 11;
+    L_LU = 12;
+    L_SHOU = 13;
+    L_XI = 14;
+    L_CAI = 15;
+
+    L_MOUSE = 21;
+    L_COW = 22;
+    L_TIGER = 23;
+    L_RABBIT = 24;
+    L_DRAGON = 25;
+    L_SNAKE = 26;
+    L_HORSE = 27;
+    L_SHEEP = 28;
+    L_MONKEY = 29;
+    L_CHICKEN = 30;
+    L_DOG = 31;
+    L_PIG = 32;
+}
+
+message Lucky12ChipInfo {
+    int32   pos1_chip = 1;
+    int32   pos2_chip = 2;
+
+    int32   pos11_chip = 11;
+    int32   pos12_chip = 12;
+    int32   pos13_chip = 13;
+    int32   pos14_chip = 14;
+    int32   pos15_chip = 15;
+
+    int32   pos21_chip = 21;
+    int32   pos22_chip = 22;
+    int32   pos23_chip = 23;
+    int32   pos24_chip = 24;
+    int32   pos25_chip = 25;
+    int32   pos26_chip = 26;
+    int32   pos27_chip = 27;
+    int32   pos28_chip = 28;
+    int32   pos29_chip = 29;
+    int32   pos30_chip = 30;
+    int32   pos31_chip = 31;
+    int32   pos32_chip = 32;
+
+}
+
+message Lucky12Result {
+    int32   result1_pos = 1;
+    int32   result2_pos = 2;
+    int32   result3_pos = 3;
+}
+
+message Lucky12EnterRoomRequest {
+}
+message Lucky12EnterRoomResponse {
+    STATUS  status  = 1;
+    string  msg = 2;
+    int32   seat_id = 3;
+    repeated    GameUserInfo    user_info_list = 4;
+    Lucky12ChipInfo   table_chip = 5;
+    Lucky12ChipInfo   own_chip = 6;
+    int32   bet_remain_secs = 7;
+    repeated Lucky12Result   result_list = 8;
+}
+
+//可下100, 1000, 1万
+message Lucky12BetRequest {
+    Lucky12Pos   bet_pos = 1;
+    int32   bet_count = 2; //下注数
+}
+message Lucky12BetResponse {
+    STATUS  status  = 1;    //1:成功  -1:失败
+    string  msg = 2;
+    Lucky12ChipInfo   table_chip = 3;
+    Lucky12ChipInfo   own_chip = 4;
+    repeated    int32   available_bet_list = 5; //可下的筹码列表   最多下注20万
+    int32   coin_count = 6;
+}
+message Lucky12BetBroadcast {
+    Lucky12Pos   bet_pos = 1;
+    int32   bet_count = 2;
+    Lucky12ChipInfo   table_chip = 3;
+}
+
+message Lucky12GameOverBroadcast {
+    repeated GameOverUserInfo user_list = 1;
+    int32   coin_count = 2;
+    Lucky12Result   result = 3;
+}
+
+//游戏开始下注通知
+message GameBeginNotification {
+    int32   bet_remain_secs = 1;
+}
+
+//清除筹码
+message GameCleanBetRequest {
+}
+message GameCleanBetResponse {
+    int32   coin_count = 1;
+}
+
+
+
+
+

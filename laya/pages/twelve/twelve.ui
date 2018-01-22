@@ -2,7 +2,7 @@
     "x":0,
     "type":"View",
     "selectedBox":1,
-    "selecteID":14,
+    "selecteID":35,
     "props":{"width":720,"sceneColor":"#000000","height":1180},
     "nodeParent":-1,
     "label":"View",
@@ -55,52 +55,52 @@
         {
             "x":15,
             "type":"Image",
-            "props":{"y":261,"x":32,"skin":"comp/round/board/dierceng.png"},
+            "props":{"y":589,"x":360,"var":"bigCircle","skin":"comp/round/board/dierceng.png","pivotY":328.5,"pivotX":328},
             "nodeParent":1,
-            "label":"Image",
+            "label":"Image(bigCircle)",
             "isDirectory":false,
             "isAniNode":true,
             "hasChild":false,
-            "compId":3,
+            "compId":67,
             "child":[
                 ]
         },
         {
             "x":15,
             "type":"Image",
-            "props":{"y":382,"x":150,"skin":"comp/round/board/disanceng.png"},
+            "props":{"y":382,"x":152,"var":"middleCircle","skin":"comp/round/board/disanceng.png"},
             "nodeParent":1,
-            "label":"Image",
+            "label":"Image(middleCircle)",
             "isDirectory":false,
             "isAniNode":true,
             "hasChild":false,
-            "compId":4,
+            "compId":65,
             "child":[
                 ]
         },
         {
             "x":15,
             "type":"Image",
-            "props":{"y":24,"x":2,"skin":"comp/round/board/ewai.png"},
+            "props":{"y":484,"x":254,"var":"smallCircle","skin":"comp/round/board/zhongjian.png"},
+            "nodeParent":1,
+            "label":"Image(smallCircle)",
+            "isDirectory":false,
+            "isAniNode":true,
+            "hasChild":false,
+            "compId":68,
+            "child":[
+                ]
+        },
+        {
+            "x":15,
+            "type":"Image",
+            "props":{"y":98,"x":2,"skin":"comp/round/board/ewai.png"},
             "nodeParent":1,
             "label":"Image",
             "isDirectory":false,
             "isAniNode":true,
             "hasChild":false,
             "compId":5,
-            "child":[
-                ]
-        },
-        {
-            "x":15,
-            "type":"Image",
-            "props":{"y":484,"x":254,"skin":"comp/round/board/zhongjian.png"},
-            "nodeParent":1,
-            "label":"Image",
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":10,
             "child":[
                 ]
         },
@@ -136,14 +136,13 @@
             "props":{"y":185,"x":67,"width":139,"text":"玉女·福·羊","height":39,"fontSize":26,"font":"Microsoft YaHei","color":"#c89290"},
             "nodeParent":1,
             "label":"Label",
-            "isOpen":true,
+            "isOpen":false,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
             "compId":13,
             "child":[
                 {
-                    "x":30,
                     "type":"Image",
                     "props":{"y":12,"x":129,"skin":"comp/round/board/icon.png"},
                     "nodeParent":13,
@@ -159,7 +158,7 @@
         {
             "x":15,
             "type":"Label",
-            "props":{"y":188,"x":597,"width":50,"text":"20S","height":35,"fontSize":28,"font":"Microsoft YaHei","color":"#c89290","bold":true},
+            "props":{"y":185,"x":597,"width":50,"text":"20S","height":35,"fontSize":28,"font":"Microsoft YaHei","color":"#c89290","bold":true},
             "nodeParent":1,
             "label":"Label",
             "isOpen":true,
@@ -176,14 +175,13 @@
             "props":{"y":1120,"x":31,"skin":"comp/round/board/jindoubg.png"},
             "nodeParent":1,
             "label":"Image",
-            "isOpen":true,
+            "isOpen":false,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
             "compId":21,
             "child":[
                 {
-                    "x":30,
                     "type":"Image",
                     "props":{"y":-7,"x":167,"skin":"comp/round/board/chongzhi.png"},
                     "nodeParent":21,
@@ -202,14 +200,13 @@
             "props":{"y":486,"x":311,"skin":"comp/round/board/inner.png"},
             "nodeParent":1,
             "label":"Image",
-            "isOpen":true,
+            "isOpen":false,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
             "compId":20,
             "child":[
                 {
-                    "x":30,
                     "type":"Label",
                     "props":{"y":-5,"x":15,"width":72,"valign":"middle","text":"x1.8","height":36,"fontSize":22,"font":"Microsoft YaHei","color":"#feaead","align":"center"},
                     "nodeParent":20,
@@ -228,14 +225,13 @@
             "props":{"y":382,"x":309,"skin":"comp/round/board/middle.png"},
             "nodeParent":1,
             "label":"Image",
-            "isOpen":true,
+            "isOpen":false,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
             "compId":22,
             "child":[
                 {
-                    "x":30,
                     "type":"Label",
                     "props":{"y":-4,"x":15,"width":72,"valign":"middle","text":"x1.8","height":36,"fontSize":22,"font":"Microsoft YaHei","color":"#feaead","align":"center"},
                     "nodeParent":22,
@@ -254,14 +250,13 @@
             "props":{"y":236,"x":310,"skin":"comp/round/board/outter.png"},
             "nodeParent":1,
             "label":"Image",
-            "isOpen":true,
+            "isOpen":false,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
             "compId":23,
             "child":[
                 {
-                    "x":30,
                     "type":"Label",
                     "props":{"y":-9,"x":14,"width":72,"valign":"middle","text":"x1.8","height":36,"fontSize":22,"font":"Microsoft YaHei","color":"#feaead","align":"center"},
                     "nodeParent":23,
@@ -277,9 +272,9 @@
         {
             "x":15,
             "type":"Image",
-            "props":{"y":1073,"x":622,"skin":"comp/round/board/qingchu.png"},
+            "props":{"y":1073,"x":622,"var":"cleanChipBtn","skin":"comp/round/board/qingchu.png"},
             "nodeParent":1,
-            "label":"Image",
+            "label":"Image(cleanChipBtn)",
             "isOpen":true,
             "isDirectory":false,
             "isAniNode":true,
@@ -317,9 +312,9 @@
         {
             "x":15,
             "type":"Image",
-            "props":{"y":12,"x":639,"skin":"comp/round/board/shuyingjiu.png"},
+            "props":{"y":12,"x":639,"var":"menuBtn","skin":"comp/round/board/shuyingjiu.png"},
             "nodeParent":1,
-            "label":"Image",
+            "label":"Image(menuBtn)",
             "isDirectory":false,
             "isAniNode":true,
             "hasChild":false,
@@ -382,7 +377,7 @@
         {
             "x":15,
             "type":"Label",
-            "props":{"y":28,"x":11,"width":139,"text":"本局额外加奖","height":39,"fontSize":26,"font":"Microsoft YaHei","color":"#c89290"},
+            "props":{"y":107,"x":11,"width":139,"text":"本局额外加奖","height":39,"fontSize":26,"font":"Microsoft YaHei","color":"#c89290"},
             "nodeParent":1,
             "label":"Label",
             "isOpen":true,
@@ -409,126 +404,6 @@
         },
         {
             "x":15,
-            "type":"Image",
-            "props":{"y":1070,"x":269,"skin":"comp/round/board/chouma.png"},
-            "nodeParent":1,
-            "label":"Image",
-            "isOpen":true,
-            "isDirectory":true,
-            "isAniNode":true,
-            "hasChild":true,
-            "compId":19,
-            "child":[
-                {
-                    "x":30,
-                    "type":"Label",
-                    "props":{"y":61,"x":4,"width":87,"valign":"middle","text":"100","height":32,"fontSize":22,"font":"Microsoft YaHei","color":"#663620","align":"center"},
-                    "nodeParent":19,
-                    "label":"Label",
-                    "isOpen":true,
-                    "isDirectory":false,
-                    "isAniNode":true,
-                    "hasChild":false,
-                    "compId":38,
-                    "child":[
-                        ]
-                },
-                {
-                    "x":30,
-                    "type":"Image",
-                    "props":{"y":0,"x":0,"skin":"comp/round/board/chouma-zz.png"},
-                    "nodeParent":19,
-                    "label":"Image",
-                    "isDirectory":false,
-                    "isAniNode":true,
-                    "hasChild":false,
-                    "compId":44,
-                    "child":[
-                        ]
-                }]
-        },
-        {
-            "x":15,
-            "type":"Image",
-            "props":{"y":1070,"x":385,"skin":"comp/round/board/chouma.png"},
-            "nodeParent":1,
-            "label":"Image",
-            "isOpen":true,
-            "isDirectory":true,
-            "isAniNode":true,
-            "hasChild":true,
-            "compId":39,
-            "child":[
-                {
-                    "x":30,
-                    "type":"Label",
-                    "props":{"y":61,"x":4,"width":87,"valign":"middle","text":"1000","height":32,"fontSize":22,"font":"Microsoft YaHei","color":"#663620","align":"center"},
-                    "nodeParent":39,
-                    "label":"Label",
-                    "isOpen":true,
-                    "isDirectory":false,
-                    "isAniNode":true,
-                    "hasChild":false,
-                    "compId":40,
-                    "child":[
-                        ]
-                },
-                {
-                    "x":30,
-                    "type":"Image",
-                    "props":{"y":0,"x":0,"skin":"comp/round/board/chouma-zz.png"},
-                    "nodeParent":39,
-                    "label":"Image",
-                    "isDirectory":false,
-                    "isAniNode":true,
-                    "hasChild":false,
-                    "compId":46,
-                    "child":[
-                        ]
-                }]
-        },
-        {
-            "x":15,
-            "type":"Image",
-            "props":{"y":1070,"x":498,"skin":"comp/round/board/chouma.png"},
-            "nodeParent":1,
-            "label":"Image",
-            "isOpen":true,
-            "isDirectory":true,
-            "isAniNode":true,
-            "hasChild":true,
-            "compId":41,
-            "child":[
-                {
-                    "x":30,
-                    "type":"Label",
-                    "props":{"y":61,"x":4,"width":87,"valign":"middle","text":"10000","height":32,"fontSize":22,"font":"Microsoft YaHei","color":"#663620","align":"center"},
-                    "nodeParent":41,
-                    "label":"Label",
-                    "isOpen":true,
-                    "isDirectory":false,
-                    "isAniNode":true,
-                    "hasChild":false,
-                    "compId":42,
-                    "child":[
-                        ]
-                },
-                {
-                    "x":30,
-                    "type":"Image",
-                    "props":{"y":0,"x":0,"skin":"comp/round/board/chouma-zz.png"},
-                    "nodeParent":41,
-                    "label":"Image",
-                    "isDirectory":false,
-                    "isAniNode":true,
-                    "hasChild":false,
-                    "compId":45,
-                    "child":[
-                        ]
-                }]
-        },
-        {
-            "x":15,
             "type":"Label",
             "props":{"y":1123,"x":39,"width":159,"text":"100","height":39,"fontSize":26,"font":"Microsoft YaHei","color":"#f0d2d4"},
             "nodeParent":1,
@@ -547,14 +422,13 @@
             "props":{"y":774,"x":11,"skin":"comp/round/board/headbg.png"},
             "nodeParent":1,
             "label":"Image",
-            "isOpen":true,
+            "isOpen":false,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
             "compId":47,
             "child":[
                 {
-                    "x":30,
                     "type":"Image",
                     "props":{"y":-3,"x":-2,"skin":"comp/round/board/circle1.png"},
                     "nodeParent":47,
@@ -568,7 +442,6 @@
                     "$HIDDEN":false
                 },
                 {
-                    "x":30,
                     "type":"Label",
                     "props":{"y":90,"x":-10,"width":110,"text":"用户名","overflow":"hidden","height":31,"fontSize":24,"font":"Microsoft YaHei","color":"#8c756d","align":"center"},
                     "nodeParent":47,
@@ -588,14 +461,13 @@
             "props":{"y":876,"x":133,"skin":"comp/round/board/headbg.png"},
             "nodeParent":1,
             "label":"Image",
-            "isOpen":true,
+            "isOpen":false,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
             "compId":52,
             "child":[
                 {
-                    "x":30,
                     "type":"Image",
                     "props":{"y":-3,"x":-2,"skin":"comp/round/board/circle1.png"},
                     "nodeParent":52,
@@ -609,7 +481,6 @@
                     "$HIDDEN":false
                 },
                 {
-                    "x":30,
                     "type":"Label",
                     "props":{"y":90,"x":-10,"width":110,"text":"用户名","overflow":"hidden","height":31,"fontSize":24,"font":"Microsoft YaHei","color":"#8c756d","align":"center"},
                     "nodeParent":52,
@@ -629,14 +500,13 @@
             "props":{"y":924,"x":315,"skin":"comp/round/board/headbg.png"},
             "nodeParent":1,
             "label":"Image",
-            "isOpen":true,
+            "isOpen":false,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
             "compId":55,
             "child":[
                 {
-                    "x":30,
                     "type":"Image",
                     "props":{"y":-3,"x":-2,"skin":"comp/round/board/circle1.png"},
                     "nodeParent":55,
@@ -650,7 +520,6 @@
                     "$HIDDEN":false
                 },
                 {
-                    "x":30,
                     "type":"Label",
                     "props":{"y":90,"x":-10,"width":110,"text":"我","overflow":"hidden","height":31,"fontSize":24,"font":"Microsoft YaHei","color":"#8c756d","align":"center"},
                     "nodeParent":55,
@@ -670,14 +539,13 @@
             "props":{"y":876,"x":491,"skin":"comp/round/board/headbg.png"},
             "nodeParent":1,
             "label":"Image",
-            "isOpen":true,
+            "isOpen":false,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
             "compId":58,
             "child":[
                 {
-                    "x":30,
                     "type":"Image",
                     "props":{"y":-3,"x":-2,"skin":"comp/round/board/circle1.png"},
                     "nodeParent":58,
@@ -691,7 +559,6 @@
                     "$HIDDEN":false
                 },
                 {
-                    "x":30,
                     "type":"Label",
                     "props":{"y":90,"x":-10,"width":110,"text":"用户名","overflow":"hidden","height":31,"fontSize":24,"font":"Microsoft YaHei","color":"#8c756d","align":"center"},
                     "nodeParent":58,
@@ -711,14 +578,13 @@
             "props":{"y":774,"x":620,"skin":"comp/round/board/headbg.png"},
             "nodeParent":1,
             "label":"Image",
-            "isOpen":true,
+            "isOpen":false,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
             "compId":61,
             "child":[
                 {
-                    "x":30,
                     "type":"Image",
                     "props":{"y":-3,"x":-2,"skin":"comp/round/board/circle1.png"},
                     "nodeParent":61,
@@ -732,7 +598,6 @@
                     "$HIDDEN":false
                 },
                 {
-                    "x":30,
                     "type":"Label",
                     "props":{"y":90,"x":-10,"width":110,"text":"用户名","overflow":"hidden","height":31,"fontSize":24,"font":"Microsoft YaHei","color":"#8c756d","align":"center"},
                     "nodeParent":61,
@@ -745,6 +610,144 @@
                         ]
                 }],
             "$HIDDEN":false
+        },
+        {
+            "x":15,
+            "type":"Box",
+            "props":{"y":1070,"x":269,"var":"chipBox"},
+            "nodeParent":1,
+            "label":"Box(chipBox)",
+            "isOpen":false,
+            "isDirectory":true,
+            "isAniNode":true,
+            "hasChild":true,
+            "compId":64,
+            "child":[
+                {
+                    "type":"Image",
+                    "props":{"skin":"comp/round/board/chouma.png"},
+                    "nodeParent":64,
+                    "label":"Image",
+                    "isOpen":true,
+                    "isDirectory":true,
+                    "isAniNode":true,
+                    "hasChild":true,
+                    "compId":19,
+                    "child":[
+                        {
+                            "type":"Label",
+                            "props":{"y":61,"x":4,"width":87,"valign":"middle","text":"100","height":32,"fontSize":22,"font":"Microsoft YaHei","color":"#663620","align":"center"},
+                            "nodeParent":19,
+                            "label":"Label",
+                            "isOpen":true,
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":38,
+                            "child":[
+                                ]
+                        },
+                        {
+                            "type":"Image",
+                            "props":{"y":0,"x":0,"visible":false,"skin":"comp/round/board/chouma-zz.png"},
+                            "nodeParent":19,
+                            "label":"Image",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":44,
+                            "child":[
+                                ],
+                            "$HIDDEN":false
+                        }]
+                },
+                {
+                    "type":"Image",
+                    "props":{"x":116,"skin":"comp/round/board/chouma.png"},
+                    "nodeParent":64,
+                    "label":"Image",
+                    "isOpen":false,
+                    "isDirectory":true,
+                    "isAniNode":true,
+                    "hasChild":true,
+                    "compId":39,
+                    "child":[
+                        {
+                            "type":"Label",
+                            "props":{"y":61,"x":4,"width":87,"valign":"middle","text":"1000","height":32,"fontSize":22,"font":"Microsoft YaHei","color":"#663620","align":"center"},
+                            "nodeParent":39,
+                            "label":"Label",
+                            "isOpen":true,
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":40,
+                            "child":[
+                                ]
+                        },
+                        {
+                            "type":"Image",
+                            "props":{"y":0,"x":0,"skin":"comp/round/board/chouma-zz.png"},
+                            "nodeParent":39,
+                            "label":"Image",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":46,
+                            "child":[
+                                ]
+                        }]
+                },
+                {
+                    "type":"Image",
+                    "props":{"x":229,"skin":"comp/round/board/chouma.png"},
+                    "nodeParent":64,
+                    "label":"Image",
+                    "isOpen":false,
+                    "isDirectory":true,
+                    "isAniNode":true,
+                    "hasChild":true,
+                    "compId":41,
+                    "child":[
+                        {
+                            "type":"Label",
+                            "props":{"y":61,"x":4,"width":87,"valign":"middle","text":"10000","height":32,"fontSize":22,"font":"Microsoft YaHei","color":"#663620","align":"center"},
+                            "nodeParent":41,
+                            "label":"Label",
+                            "isOpen":true,
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":42,
+                            "child":[
+                                ]
+                        },
+                        {
+                            "type":"Image",
+                            "props":{"y":0,"x":0,"skin":"comp/round/board/chouma-zz.png"},
+                            "nodeParent":41,
+                            "label":"Image",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":45,
+                            "child":[
+                                ]
+                        }]
+                }]
+        },
+        {
+            "x":15,
+            "type":"Image",
+            "props":{"y":12,"x":10,"var":"backBtn","skin":"comp/round/board/back.png"},
+            "nodeParent":1,
+            "label":"Image(backBtn)",
+            "isDirectory":false,
+            "isAniNode":true,
+            "hasChild":false,
+            "compId":69,
+            "child":[
+                ]
         }],
     "animations":[
         {

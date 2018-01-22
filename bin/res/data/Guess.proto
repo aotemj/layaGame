@@ -1,0 +1,58 @@
+syntax = "proto3";
+import "Common.proto";
+
+package proto_msg;
+option csharp_namespace = "Pb";
+
+enum GuessPos {
+    RICH = 0;
+    BIG = 1;
+    SMALL = 2;
+}
+
+message GuessChipInfo {
+    int32 pos_rich = 1;
+    int32 pos_big = 2;
+    int32 pos_small = 3;
+}
+
+message GuessEnterRoomRequest {
+}
+message GuessEnterRoomResponse {
+    STATUS  status  = 1;    //1:成功  -1:失败
+    string  msg = 2;
+    int32  seat_id = 3;
+    repeated    GameUserInfo    user_info_list = 4;
+    GuessChipInfo   table_chip = 5;
+    GuessChipInfo   own_chip = 6;
+    int32   bet_remain_secs = 7;
+    repeated GuessPos   result_list = 8;
+}
+
+//可下100, 1000, 1万
+message GuessBetRequest {
+    GuessPos   bet_pos = 1;
+    int32   bet_count = 2; //下注数
+}
+message GuessBetResponse {
+    STATUS  status  = 1;    //1:成功  -1:失败
+    string  msg = 2;
+    GuessChipInfo   table_chip = 3;
+    GuessChipInfo   own_chip = 4;
+    repeated    int32   available_bet_list = 5; //可下的筹码列表   最多下注20万
+    int32   coin_count = 6;
+}
+message GuessBetBroadcast {
+    GuessPos   bet_pos = 1;
+    int32   bet_count = 2;
+    GuessChipInfo   table_chip = 3;
+}
+
+message GuessGameOverBroadcast {
+    repeated GameOverUserInfo user_list = 1;
+    int32   coin_count = 2;
+    GuessPos   result = 3;
+    int32   result_num = 4;
+}
+
+

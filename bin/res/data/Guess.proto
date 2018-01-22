@@ -22,11 +22,11 @@ message GuessEnterRoomResponse {
     STATUS  status  = 1;    //1:成功  -1:失败
     string  msg = 2;
     int32  seat_id = 3;
-    repeated    GameUserInfo    user_info_list = 4;
+    repeated    GameUserInfo    user_list = 4;
     GuessChipInfo   table_chip = 5;
     GuessChipInfo   own_chip = 6;
     int32   bet_remain_secs = 7;
-    repeated GuessPos   result_list = 8;
+    repeated GuessPos   history_list = 8;
 }
 
 //可下100, 1000, 1万

@@ -55,6 +55,7 @@ Laya.loader.load("res/atlas/comp.atlas", Handler.create(this, onAssetLoaded), nu
             handleCloseAndError();
         },
         open :function() {
+            console.log(buffer2)
           Luck.send(buffer2);
         },
         receive:function(data) {

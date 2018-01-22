@@ -6,69 +6,74 @@ var Handler = laya.utils.Handler;
 Laya.init(720, 1180);
 Laya.loader.load("res/atlas/comp.atlas", Handler.create(this, onAssetLoaded), null, Loader.ATLAS);
 
+ 
+
+ 
+(function()
+{
+  var Loader = Laya.Loader;
+  var Browser = Laya.Browser;
+  var Handler = Laya.Handler;
+
+  var ProtoBuf = Browser.window.protobuf;
+
+ 
+
+  ProtoBuf.load("res/data/Common.proto", onAssetsLoaded);
+
+  function onAssetsLoaded(err, root)
+  {
+    if (err)
+      throw err;
 
 
-(function () {
-    var Loader = Laya.Loader;
-    var Browser = Laya.Browser;
-    var Handler = Laya.Handler;
 
-    var ProtoBuf = Browser.window.protobuf;
+    // Obtain a message type
+    Pb.init(root)
 
-    ProtoBuf.load("res/data/Common.proto", onAssetsLoaded);
-
-    function onAssetsLoaded(err, root) {
-        if (err)
-            throw err;
-
-        // Obtain a message type
-        Pb.init(root)
-
-        // Create a new message
-        var message = Pb.CheckinRequest.create(
-            {
-                timestamp: parseInt(new Date().getTime() / 1000),
-                clientVerId: 1
-            });
+    // Create a new message
+    var message = Pb.CheckinRequest.create(
+    {
+      timestamp: parseInt(new Date().getTime()/1000),
+      clientVerId:1
+    });
 
 
-        // Verify the message if necessary (i.e. when possibly incomplete or invalid)
-        var errMsg = Pb.CheckinRequest.verify(message);
-        if (errMsg)
-            throw Error(errMsg);    
-            
-        // Encode a message to an Uint8Array (browser) or Buffer (node)
+    // Verify the message if necessary (i.e. when possibly incomplete or invalid)
+    var errMsg = Pb.CheckinRequest.verify(message);
+    if (errMsg)
+      throw Error(errMsg);
 
-        var buffer = Pb.CheckinRequest.encode(message).finish();
-        buffer2 = packPbMsg2(Pb.Id.CheckinRequest, buffer)
+    // Encode a message to an Uint8Array (browser) or Buffer (node)
 
-        Luck.sender = Luck.connect({
-            //data:buffer2,
-            err: function () {
-                handleCloseAndError();
-            },
-            open: function () {
-                console.log(buffer2)
-                Luck.send(buffer2);
-            },
-            receive: function (data) {
-            },
-            err: function () {
-                handleCloseAndError();
-            },
-            close: function () {
-                handleCloseAndError();
-            },
-            debug: true
-        });
-    }
+    var buffer = Pb.CheckinRequest.encode(message).finish();
+    buffer2 = packPbMsg2(Pb.Id.CheckinRequest, buffer)
+
+    Luck.sender = Luck.connect({
+        //data:buffer2,
+        err: function () {
+            handleCloseAndError();
+        },
+        open :function() {
+          Luck.send(buffer2);
+        },
+        receive:function(data) {
+        },
+        err: function () {
+            handleCloseAndError();
+        },
+        close: function () {
+            handleCloseAndError();
+        },
+        debug: true
+    });
+  }
 })();
 
 function handleCloseAndError() {
-    console.log('CloseAndError !')
+
 }
-
-
+ 
 
 
 function onAssetLoaded() {

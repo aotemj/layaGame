@@ -67,11 +67,11 @@ message Lucky12EnterRoomResponse {
     STATUS  status  = 1;
     string  msg = 2;
     int32   seat_id = 3;
-    repeated    GameUserInfo    user_info_list = 4;
+    repeated    GameUserInfo    user_list = 4;
     Lucky12ChipInfo   table_chip = 5;
     Lucky12ChipInfo   own_chip = 6;
     int32   bet_remain_secs = 7;
-    repeated Lucky12Result   result_list = 8;
+    repeated Lucky12Result  history_list = 8;
 }
 
 //可下100, 1000, 1万

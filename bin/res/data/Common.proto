@@ -36,8 +36,6 @@ enum SEAT_STATUS {
 message RoomTypeInfo {
     int32 type_id = 1;
     int32 enter_limit = 2; //房间下限
-    int32 base_score = 3;  //底分
-    int32 online_count = 4; //在线人数
 }
 
 //连接后的第一个消息
@@ -48,7 +46,9 @@ message CheckinRequest {
 //返回游戏初始数据，详细内容待定
 message CheckinResponse {
     uint64 timestamp = 1;  //timestamp
-    repeated RoomTypeInfo nn_room_list = 2;
+    int32   upper_limit_lucky12 = 2;
+    int32   upper_limit_guess = 3;
+    int32   upper_limit_new666 = 4;
 }
 
 
@@ -186,10 +186,12 @@ message LoginResponse {
     STATUS status = 1;
     string msg = 2;
     GameUserInfo user_info = 3;
-    int32   lucky12_room_id = 4;
-    int32   guess_room_id = 5;
-    int32   new666_room_id = 6;
-    int32   unread_msg_count = 7;
+    int32   game_room_id = 4;
+    int32   lucky12_room_id = 5;
+    int32   guess_room_id = 6;
+    int32   new666_room_id = 7;
+    int32   unread_msg_count = 8;
+    int32   sign_reward_times = 9;
 }
 
 //用户在异地登录，当前用户被踢下线通知，这里会主动断开服务器连接，不要自动重连

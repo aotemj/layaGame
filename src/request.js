@@ -4,7 +4,7 @@ Luck.buffer2Object = function (msg) {
     b.writeArrayBuffer(msg);//把接收到的二进制数据读进byte数组便于解析。
     b.pos = 0;//设置偏移指针；
     msg_uint8s = b._u8d_;
-    id_arr = msg_uint8s.subarray(0,2)
+    id_arr = msg_uint8s.subarray(0, 2)
     data_arr = msg_uint8s.subarray(2, msg.length)
     return [Uint8Array2Int(id_arr), data_arr]
 };
@@ -33,7 +33,7 @@ Luck.connect = function (option) {
     var open = option.open || interface;
     var data = option.data;
     var debug = option.debug || false;
- 
+
     function __debug() {
         if (debug) {
             for (var i = 0, len = arguments.length; i < len; i++) {
@@ -66,26 +66,27 @@ Luck.connect = function (option) {
         msg_arr = Luck.buffer2Object(msg);
         msg_id = msg_arr[0]
         msg_buf = msg_arr[1]
-// <<<<<<< HEAD
-//         if (msg_id != 3) {
-//             __debug('receive data:', msg_id, Pb.getObjById(msg_id).decode(data_arr));
-// =======
+        // <<<<<<< HEAD
+        //         if (msg_id != 3) {
+        //             __debug('receive data:', msg_id, Pb.getObjById(msg_id).decode(data_arr));
+        // =======
         msg_decode = Pb.getObjById(msg_id).decode(msg_buf)
         if (msg_id != 3) {
             __debug(msg_decode);
-// >>>>>>> 1479b316d84948c30e49a423223fc982b6b21b4e
+            // >>>>>>> 1479b316d84948c30e49a423223fc982b6b21b4e
         }
         
         Luck.handlers.forEach(function (ele) {
             var key = ele.getKey();
             if (msg_id == key) {
-// <<<<<<< HEAD
-//                 ele.handle(msg_buf);
-// =======
+                // <<<<<<< HEAD
+                //                 ele.handle(msg_buf);
+                // =======
                 ele.handle(msg_decode);
-// >>>>>>> 1479b316d84948c30e49a423223fc982b6b21b4e
+                // >>>>>>> 1479b316d84948c30e49a423223fc982b6b21b4e
             }
         });
+
         receive(msg);
     }
     function closeHandler(e) {

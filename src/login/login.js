@@ -16,7 +16,17 @@ var LoginView = (function (_super) {
     var _prototype = Login.prototype
     // 初始化
     _prototype.init = function () {
-
+        var self = this
+        Luck.addHandle(new Luck.Handler(Pb.Id.LoginResponse, function (msg) {
+            if (msg.status == 1) {
+                Luck.selfUserInfo = msg.userInfo
+                self.removeSelf()
+                Luck.indexView = new IndexView()
+                Laya.stage.addChild(Luck.indexView)
+            } else {
+                Luck.alertView.show(msg.msg)
+            }
+        }));
     }
     // 登陆
     _prototype.loginBtnClick = function () {
@@ -25,9 +35,16 @@ var LoginView = (function (_super) {
         if (username.length == 11 && password.length > 0) {
 
         }
-        this.removeSelf()
-        Luck.indexView = new IndexView()
-        Laya.stage.addChild(Luck.indexView)
+        var message = Pb.LoginRequest.create(
+            {
+                channel: 0,
+                username: username,
+                nickname: username,
+                passwd: password,
+                dev_name: navigator.userAgent
+            });
+        Luck.send(packPbMsg2(Pb.Id.LoginRequest, Pb.LoginRequest.encode(message).finish()));
+       
     }
     // 注册
     _prototype.registBtnClick = function () {

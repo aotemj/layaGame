@@ -16,6 +16,17 @@ var TwelveView = (function (_super) {
         this.luckArr = ['福', '禄', '寿', '喜', '财']
         this.manArr = ['玉女', '金童']
 
+        // var Loader = Laya.Loader;
+        // var Browser = Laya.Browser;
+        // var Handler = Laya.Handler;
+
+        // var ProtoBuf = Browser.window.protobuf;
+
+        // ProtoBuf.load("res/data/Lucky12.proto", function (err, root) {
+
+        //     Pb.init(root)
+        // });
+
         this.init()
     }
     Laya.class(Twelve, 'Twelve', _super);
@@ -23,6 +34,26 @@ var TwelveView = (function (_super) {
 
     // 初始化
     _prototype.init = function () {
+
+
+
+        // var message = Pb.Lucky12EnterRoomRequest.create({});
+        // console.log(Pb.Lucky12EnterRoomRequest)
+        // Luck.send(packPbMsg2(Pb.Id.Lucky12EnterRoomRequest, Pb.Lucky12EnterRoomRequest.encode(message).finish()));
+
+        Luck.addHandle(new Luck.Handler(Pb.Id.Lucky12EnterRoomResponse, function (msg) {
+
+        }));
+
+        // STATUS  status  = 1;
+        // string  msg = 2;
+        // int32   seat_id = 3;
+        // repeated    GameUserInfo    user_list = 4;
+        // Lucky12ChipInfo   table_chip = 5;
+        // Lucky12ChipInfo   own_chip = 6;
+        // int32   bet_remain_secs = 7;
+        // repeated Lucky12Result  history_list = 8;
+
         this.addMask(328, this.bigCircle)
         this.addMask(207.5, this.middleCircle)
         this.addMask(106, this.smallCircle)
@@ -48,7 +79,7 @@ var TwelveView = (function (_super) {
             aniDuration: 8000
         })
         pie.start(6, function () {
-            console.log('gg')
+
         })
         // 中圈
         var pie2 = new Luck.createPie({
@@ -62,9 +93,9 @@ var TwelveView = (function (_super) {
             },
             aniDuration: 8000
         })
-         
+
         pie2.start(1, function () {
-            console.log('gg')
+
         })
         // 小圈
         var pie3 = new Luck.createPie({
@@ -79,11 +110,12 @@ var TwelveView = (function (_super) {
             aniDuration: 2000
         })
         pie3.start(6, function () {
-            console.log('gg')
+
         })
-        
 
 
+
+        this.initHeadAddMask()
 
     }
 
@@ -165,6 +197,23 @@ var TwelveView = (function (_super) {
         this.removeSelf()
         Luck.indexView = new IndexView()
         Laya.stage.addChild(Luck.indexView)
+    }
+    // 头像遮罩
+    _prototype.initHeadAddMask = function () {
+        for (var i = 0; i < this.playerBox._childs.length; i++) {
+            var player = this.playerBox._childs[i]
+            var img = player._childs[0]
+            var sprite = new Laya.Sprite();
+            sprite.graphics.drawCircle(94, 94, 94, '#00ffff')
+            img.mask = sprite
+        }
+        var sp = new Laya.Sprite()
+        sp.graphics.drawCircle(94, 94, 94, '#00ffff')
+        this.selfHeadImg._childs[0].mask = sp
+
+        var box = this.selfHeadImg._childs[0]
+        box.skin = 'comp/headimg/' + Luck.selfUserInfo.avatarId + '.png'
+        box.scale(0.5, 0.5)
     }
 
     // 圆环添加点击遮罩

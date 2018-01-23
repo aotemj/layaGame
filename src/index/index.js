@@ -12,6 +12,8 @@ var IndexView = (function (_super) {
         this.userBtn.on(Laya.Event.CLICK, this, this.userBtnClick)
         this.tabBtnArr = [this.indexBtn, this.twelveBtn, this.guessBtn, this.sixBtn, this.userBtn]
         this.init()
+
+        
     }
     Laya.class(Index, 'Index', _super);
     var _prototype = Index.prototype

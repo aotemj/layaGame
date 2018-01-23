@@ -198,7 +198,7 @@
         {
             "x":15,
             "type":"TextInput",
-            "props":{"y":302,"x":154,"width":443,"var":"username","promptColor":"#5f6062","prompt":"请输入账号","maxChars":11,"height":59,"fontSize":24,"color":"#fff"},
+            "props":{"y":302,"x":154,"width":443,"var":"username","text":"15038927731","promptColor":"#5f6062","prompt":"请输入账号","maxChars":11,"height":59,"fontSize":24,"color":"#fff"},
             "nodeParent":1,
             "label":"TextInput(username)",
             "isDirectory":false,
@@ -211,7 +211,7 @@
         {
             "x":15,
             "type":"TextInput",
-            "props":{"y":388,"x":154,"width":443,"var":"password","type":"password","promptColor":"#5f6062","prompt":"请输入密码","height":61,"fontSize":24,"color":"#fff"},
+            "props":{"y":388,"x":154,"width":443,"var":"password","type":"password","text":"123123","promptColor":"#5f6062","prompt":"请输入密码","height":61,"fontSize":24,"color":"#fff"},
             "nodeParent":1,
             "label":"TextInput(password)",
             "isDirectory":false,

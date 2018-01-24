@@ -34,25 +34,23 @@ var TwelveView = (function (_super) {
 
     // 初始化
     _prototype.init = function () {
+        var self = this
 
+        // 进入房间
+        var message = Pb.Lucky12EnterRoomRequest.create({});
 
-
-        // var message = Pb.Lucky12EnterRoomRequest.create({});
-        // console.log(Pb.Lucky12EnterRoomRequest)
-        // Luck.send(packPbMsg2(Pb.Id.Lucky12EnterRoomRequest, Pb.Lucky12EnterRoomRequest.encode(message).finish()));
+        Luck.send(packPbMsg2(Pb.Id.Lucky12EnterRoomRequest, Pb.Lucky12EnterRoomRequest.encode(message).finish()));
 
         Luck.addHandle(new Luck.Handler(Pb.Id.Lucky12EnterRoomResponse, function (msg) {
+            self.updateUserList()
+        }));
+
+        // 有人进入
+
+        Luck.addHandle(new Luck.Handler(Pb.Id.RoomUserInfoBroadcast, function (msg) {
 
         }));
 
-        // STATUS  status  = 1;
-        // string  msg = 2;
-        // int32   seat_id = 3;
-        // repeated    GameUserInfo    user_list = 4;
-        // Lucky12ChipInfo   table_chip = 5;
-        // Lucky12ChipInfo   own_chip = 6;
-        // int32   bet_remain_secs = 7;
-        // repeated Lucky12Result  history_list = 8;
 
         this.addMask(328, this.bigCircle)
         this.addMask(207.5, this.middleCircle)
@@ -117,6 +115,7 @@ var TwelveView = (function (_super) {
 
         this.initHeadAddMask()
 
+
     }
 
     // 外环
@@ -148,6 +147,19 @@ var TwelveView = (function (_super) {
         }
         box._childs[1].visible = false
 
+    }
+    // 更新玩家列表
+    _prototype.updateUserList = function (userList) {
+        // userList.filter(function (ele, i) {
+        //     console.log(ele)
+        //     return
+        // })
+        for (var i = 0; i < this.playerBox._childs.length; i++) {
+
+            var player = this.playerBox._childs[i]
+            var img = player._childs[0]
+            // img.skin = 'comp/headImg/'+
+        }
     }
     // 清除筹码
     _prototype.cleanChipBtnClick = function () {
@@ -194,9 +206,21 @@ var TwelveView = (function (_super) {
     }
     // 返回
     _prototype.backBtnClick = function () {
-        this.removeSelf()
-        Luck.indexView = new IndexView()
-        Laya.stage.addChild(Luck.indexView)
+        var self = this
+
+        var message = Pb.RoomLeaveRequest.create({});
+        Luck.send(packPbMsg2(Pb.Id.RoomLeaveRequest, Pb.RoomLeaveRequest.encode(message).finish()));
+
+        Luck.addHandle(new Luck.Handler(Pb.Id.RoomLeaveResponse, function (msg) {
+            if (msg.status == 1) {
+                self.removeSelf()
+                Luck.indexView = new IndexView()
+                Laya.stage.addChild(Luck.indexView)
+            }else{
+                Luck.alertView.show(msg.msg)
+            }
+        }));
+
     }
     // 头像遮罩
     _prototype.initHeadAddMask = function () {

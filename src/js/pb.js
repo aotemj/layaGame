@@ -168,7 +168,7 @@ var Pb = (function () {
             return getInstance()
         })();
     }
-    Construct.prototype.init = function() {
+    Construct.prototype.init = function(root) {
         this.Hello  = root.lookup("proto_msg.Hello")
         this.CheckinRequest  = root.lookup("proto_msg.CheckinRequest")
         this.CheckinResponse  = root.lookup("proto_msg.CheckinResponse")

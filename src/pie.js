@@ -21,7 +21,7 @@ Luck.createPie = (function () {
             sprite.graphics.drawPie(this.pie.centerX, this.pie.centerY, this.pie.radius, s, s + angle, this.pie.color)
             this.pie.parent.addChild(sprite);
         }
-        
+        this.hidePie()
     }
     // 开始
     _proto.start = function (end, callback) {
@@ -35,7 +35,7 @@ Luck.createPie = (function () {
         }
         if(this.pie.length == 5){
             end = obj[end]
-      
+            
         }
 
         var self = this
@@ -54,7 +54,7 @@ Luck.createPie = (function () {
 
         go(interval)
 
-        var s = setInterval(function () {
+        self.s = setInterval(function () {
             time += 1000
 
         }, 1000)
@@ -87,8 +87,11 @@ Luck.createPie = (function () {
 
                 if (self.aniDuration <= time && canShowResult && (loopSumCount % 12) == end) {
                     flag = false
-                    clearInterval(s)
+                    clearInterval(self.s)
                     callback()
+                    // setTimeout(function(){
+                    //     self.hidePie()
+                    // },5000)
                 }
 
                 self.showPie(count)

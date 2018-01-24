@@ -60,6 +60,8 @@ var Pb = (function () {
         this.GameBeginNotification
         this.GameCleanBetRequest
         this.GameCleanBetResponse
+        this.GameResultListRequest
+        this.GameresultListResponse
         this.Lucky12EnterRoomRequest
         this.Lucky12EnterRoomResponse
         this.Lucky12BetRequest
@@ -141,30 +143,32 @@ var Pb = (function () {
                 this.GameBeginNotification = 50
                 this.GameCleanBetRequest = 51
                 this.GameCleanBetResponse = 52
-                this.Lucky12EnterRoomRequest = 53
-                this.Lucky12EnterRoomResponse = 54
-                this.Lucky12BetRequest = 55
-                this.Lucky12BetResponse = 56
-                this.Lucky12BetBroadcast = 57
-                this.Lucky12GameOverBroadcast = 58
-                this.GuessEnterRoomRequest = 59
-                this.GuessEnterRoomResponse = 60
-                this.GuessBetRequest = 61
-                this.GuessBetResponse = 62
-                this.GuessBetBroadcast = 63
-                this.GuessGameOverBroadcast = 64
-                this.New666EnterRoomRequest = 65
-                this.New666EnterRoomResponse = 66
-                this.New666BetRequest = 67
-                this.New666BetResponse = 68
-                this.New666BetBroadcast = 69
-                this.New666GameOverBroadcast = 70
+                this.GameResultListRequest = 53
+                this.GameresultListResponse = 54
+                this.Lucky12EnterRoomRequest = 55
+                this.Lucky12EnterRoomResponse = 56
+                this.Lucky12BetRequest = 57
+                this.Lucky12BetResponse = 58
+                this.Lucky12BetBroadcast = 59
+                this.Lucky12GameOverBroadcast = 60
+                this.GuessEnterRoomRequest = 61
+                this.GuessEnterRoomResponse = 62
+                this.GuessBetRequest = 63
+                this.GuessBetResponse = 64
+                this.GuessBetBroadcast = 65
+                this.GuessGameOverBroadcast = 66
+                this.New666EnterRoomRequest = 67
+                this.New666EnterRoomResponse = 68
+                this.New666BetRequest = 69
+                this.New666BetResponse = 70
+                this.New666BetBroadcast = 71
+                this.New666GameOverBroadcast = 72
                 
             }
             return getInstance()
         })();
     }
-    Construct.prototype.init = function(root) {
+    Construct.prototype.init = function() {
         this.Hello  = root.lookup("proto_msg.Hello")
         this.CheckinRequest  = root.lookup("proto_msg.CheckinRequest")
         this.CheckinResponse  = root.lookup("proto_msg.CheckinResponse")
@@ -218,6 +222,8 @@ var Pb = (function () {
         this.GameBeginNotification  = root.lookup("proto_msg.GameBeginNotification")
         this.GameCleanBetRequest  = root.lookup("proto_msg.GameCleanBetRequest")
         this.GameCleanBetResponse  = root.lookup("proto_msg.GameCleanBetResponse")
+        this.GameResultListRequest  = root.lookup("proto_msg.GameResultListRequest")
+        this.GameresultListResponse  = root.lookup("proto_msg.GameresultListResponse")
         this.Lucky12EnterRoomRequest  = root.lookup("proto_msg.Lucky12EnterRoomRequest")
         this.Lucky12EnterRoomResponse  = root.lookup("proto_msg.Lucky12EnterRoomResponse")
         this.Lucky12BetRequest  = root.lookup("proto_msg.Lucky12BetRequest")
@@ -293,6 +299,8 @@ var Pb = (function () {
         if (msg_id == this.Id.GameBeginNotification) { return this.GameBeginNotification }
         if (msg_id == this.Id.GameCleanBetRequest) { return this.GameCleanBetRequest }
         if (msg_id == this.Id.GameCleanBetResponse) { return this.GameCleanBetResponse }
+        if (msg_id == this.Id.GameResultListRequest) { return this.GameResultListRequest }
+        if (msg_id == this.Id.GameresultListResponse) { return this.GameresultListResponse }
         if (msg_id == this.Id.Lucky12EnterRoomRequest) { return this.Lucky12EnterRoomRequest }
         if (msg_id == this.Id.Lucky12EnterRoomResponse) { return this.Lucky12EnterRoomResponse }
         if (msg_id == this.Id.Lucky12BetRequest) { return this.Lucky12BetRequest }

@@ -242,7 +242,8 @@ message AuthMessageNotification {
 
 //其他玩家进入，退出房间，准备好游戏的广播消息
 message RoomUserInfoBroadcast {  // 房间玩家收到其玩家状态消息
-    GameUserInfo user_info = 1;
+    int32   room_id = 1;
+    GameUserInfo user_info = 2;
 }
 
 

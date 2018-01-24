@@ -66,12 +66,14 @@ message Lucky12EnterRoomRequest {
 message Lucky12EnterRoomResponse {
     STATUS  status  = 1;
     string  msg = 2;
-    int32   seat_id = 3;
-    repeated    GameUserInfo    user_list = 4;
-    Lucky12ChipInfo   table_chip = 5;
-    Lucky12ChipInfo   own_chip = 6;
-    int32   bet_remain_secs = 7;
-    repeated Lucky12Result  history_list = 8;
+    int32   room_id = 3;
+    int32   seat_id = 4;
+    repeated    GameUserInfo    user_list = 5;
+    Lucky12ChipInfo   table_chip = 6;
+    Lucky12ChipInfo   own_chip = 7;
+    int32   bet_remain_secs = 8;
+    repeated Lucky12Result  history_list = 9;
+    repeated    int32   available_bet_list = 10;
 }
 
 //可下100, 1000, 1万
@@ -102,16 +104,32 @@ message Lucky12GameOverBroadcast {
 //游戏开始下注通知
 message GameBeginNotification {
     int32   bet_remain_secs = 1;
+    GAME_TYPE   game_type_id = 2;
 }
 
-//清除筹码
+//清除筹码  所有游戏
 message GameCleanBetRequest {
+    GAME_TYPE   game_type_id = 1;
 }
 message GameCleanBetResponse {
-    int32   coin_count = 1;
+    STATUS  status  = 1;
+    string  msg = 2;
+    int32   coin_count = 3;
 }
 
-
+//战绩    所有游戏
+message GameResultItem {
+    string  game_time = 1;
+    int32   game_score = 2;
+}
+message GameResultListRequest {
+    GAME_TYPE   game_type_id = 1;
+}
+message GameresultListResponse {
+    STATUS  status  = 1;
+    string  msg = 2;
+    repeated GameResultItem result_list = 3;
+}
 
 
 

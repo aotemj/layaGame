@@ -21,12 +21,14 @@ message GuessEnterRoomRequest {
 message GuessEnterRoomResponse {
     STATUS  status  = 1;    //1:成功  -1:失败
     string  msg = 2;
-    int32  seat_id = 3;
-    repeated    GameUserInfo    user_list = 4;
-    GuessChipInfo   table_chip = 5;
-    GuessChipInfo   own_chip = 6;
-    int32   bet_remain_secs = 7;
-    repeated GuessPos   history_list = 8;
+    int32   room_id = 3;
+    int32  seat_id = 4;
+    repeated    GameUserInfo    user_list = 5;
+    GuessChipInfo   table_chip = 6;
+    GuessChipInfo   own_chip = 7;
+    int32   bet_remain_secs = 8;
+    repeated GuessPos   history_list = 9;
+    repeated    int32   available_bet_list = 10;
 }
 
 //可下100, 1000, 1万

@@ -92,8 +92,11 @@ message GameUserInfo {
 message GameOverUserInfo {
     int32  seat_id = 1;
     SEAT_STATUS  seat_status = 2;
-    int32  round_score = 3;
-    int32  coin_count = 5;
+    string  nickname = 3; // 昵称
+    int32 avatar_id = 4;
+    string avatar_url = 5;  //微信头像
+    int32  round_score = 6;
+    int32  coin_count = 7;
 }
 
 message RegisterRequest {

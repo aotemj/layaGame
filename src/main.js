@@ -19,6 +19,7 @@ Laya.loader.load("res/atlas/comp.atlas", Handler.create(this, onAssetLoaded), nu
 
 
     ProtoBuf.load("res/data/Common.proto", onAssetsLoaded);
+    
     ProtoBuf.load("res/data/Guess.proto",function(err, root){
         Pb.init(root)
     });

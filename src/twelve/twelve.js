@@ -85,7 +85,7 @@ var TwelveView = (function (_super) {
             Luck.alertView.show('还有' + msg.betRemainSecs + '下注时间！')
         }
 
-    
+
         this.registNotis()
     }
     // 通知回调
@@ -107,7 +107,7 @@ var TwelveView = (function (_super) {
         // 有人下注
         Luck.addHandle(new Luck.Handler(Pb.Id.Lucky12BetBroadcast, function (msg) {
             // Luck.alertView.show('有人下注')
-
+            
         }));
         // 下注回调
         Luck.addHandle(new Luck.Handler(Pb.Id.Lucky12BetResponse, function (msg) {
@@ -141,9 +141,9 @@ var TwelveView = (function (_super) {
 
         if (user) {
             if (user.seatStatus == 2) {
-                for(var i = 0; i < this.userAndPos.length; i++){
+                for (var i = 0; i < this.userAndPos.length; i++) {
                     var obj = this.userAndPos[i]
-                    if(parseInt(obj.uid) == parseInt(user.uid)){
+                    if (parseInt(obj.uid) == parseInt(user.uid)) {
                         obj.isSeat = false
                         obj.uid = ''
                         obj.entry._childs[1].text = '用戶名'
@@ -197,7 +197,16 @@ var TwelveView = (function (_super) {
 
         var box = circle.getChildByName('resultBox')._childs[direction]
 
-        box._childs[0].visible = true
+        box._childs[0].visible = true   // 显示金豆
+        var p = box._childs[0].globalToLocal(new Laya.Point(this.selfHeadImg.x, this.selfHeadImg.x))
+        p = this.bigCircle.globalToLocal(p)
+        if (!box._childs[0].isAnimating) {
+            box._childs[0].isAnimating = true
+            Laya.Tween.from(box._childs[0], { x: p.x + 100, y: (p.y + 900) }, 500, Laya.Ease.linearInOut, new Laya.Handler(this, function () {
+                box._childs[0].isAnimating = false
+            }))
+        }
+
         var sum = 0
         if (box._childs[2]._childs[0].text && who == 1) {
             sum = parseInt(box._childs[2]._childs[0].text)
@@ -285,11 +294,11 @@ var TwelveView = (function (_super) {
     _prototype.updateUserList = function (userList) {
         var self = this
         userList.filter(function (ele, i) {
-            if(ele.uid != Luck.selfUserInfo.uid){
+            if (ele.uid != Luck.selfUserInfo.uid) {
                 self.updateUserInfo(ele)
             }
         })
-         
+
     }
     // 重置筹码
     _prototype.resetChipBoard = function (circle) {

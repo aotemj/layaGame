@@ -90,9 +90,10 @@ message Lucky12BetResponse {
     int32   coin_count = 6;
 }
 message Lucky12BetBroadcast {
-    Lucky12Pos   bet_pos = 1;
-    int32   bet_count = 2;
-    Lucky12ChipInfo   table_chip = 3;
+    int32   seat_id = 1;
+    Lucky12Pos   bet_pos = 2;
+    int32   bet_count = 3;
+    Lucky12ChipInfo   table_chip = 4;
 }
 
 message Lucky12GameOverBroadcast {

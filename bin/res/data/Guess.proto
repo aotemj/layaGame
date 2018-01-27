@@ -45,9 +45,10 @@ message GuessBetResponse {
     int32   coin_count = 6;
 }
 message GuessBetBroadcast {
-    GuessPos   bet_pos = 1;
-    int32   bet_count = 2;
-    GuessChipInfo   table_chip = 3;
+    int32   seat_id = 1;
+    GuessPos   bet_pos = 2;
+    int32   bet_count = 3;
+    GuessChipInfo   table_chip = 4;
 }
 
 message GuessGameOverBroadcast {

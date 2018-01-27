@@ -2,7 +2,7 @@
     "x":0,
     "type":"Dialog",
     "selectedBox":1,
-    "selecteID":3,
+    "selecteID":6,
     "props":{"width":720,"sceneColor":"#000000","height":1180},
     "nodeParent":-1,
     "label":"Dialog",
@@ -15,7 +15,7 @@
         {
             "x":15,
             "type":"Image",
-            "props":{"y":115,"x":115,"skin":"comp/round/alert/弹窗.png"},
+            "props":{"y":105,"x":105,"skin":"comp/round/alert/弹窗.png"},
             "nodeParent":1,
             "label":"Image",
             "isDirectory":false,
@@ -28,7 +28,7 @@
         {
             "x":15,
             "type":"Image",
-            "props":{"y":124,"x":562,"var":"closeBtn","skin":"comp/round/alert/x.png"},
+            "props":{"y":114,"x":552,"var":"closeBtn","skin":"comp/round/alert/x.png"},
             "nodeParent":1,
             "label":"Image(closeBtn)",
             "isDirectory":false,
@@ -41,7 +41,7 @@
         {
             "x":15,
             "type":"Label",
-            "props":{"y":154,"x":278,"width":166,"valign":"middle","text":"结 算","height":76,"fontSize":38,"font":"Microsoft YaHei","color":"#f6d144","align":"center"},
+            "props":{"y":144,"x":268,"width":166,"valign":"middle","text":"结 算","height":76,"fontSize":38,"font":"Microsoft YaHei","color":"#f6d144","align":"center"},
             "nodeParent":1,
             "label":"Label",
             "isDirectory":false,
@@ -54,17 +54,16 @@
         {
             "x":15,
             "type":"List",
-            "props":{"y":288,"x":158,"width":430,"var":"list","spaceY":30,"height":771},
+            "props":{"y":278,"x":148,"width":430,"var":"list","spaceY":30,"height":771},
             "nodeParent":1,
             "label":"List(list)",
-            "isOpen":true,
+            "isOpen":false,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
             "compId":5,
             "child":[
                 {
-                    "x":30,
                     "type":"Box",
                     "props":{"renderType":"render"},
                     "nodeParent":5,
@@ -76,7 +75,6 @@
                     "compId":7,
                     "child":[
                         {
-                            "x":45,
                             "type":"Image",
                             "props":{"skin":"comp/round/alert/bg-拷贝.png"},
                             "nodeParent":7,
@@ -89,7 +87,6 @@
                                 ]
                         },
                         {
-                            "x":45,
                             "type":"Image",
                             "props":{"y":15,"x":30,"width":60,"skin":"comp/round/alert/金豆-拷贝.png","name":"img","height":60},
                             "nodeParent":7,
@@ -102,11 +99,10 @@
                                 ]
                         },
                         {
-                            "x":45,
                             "type":"Label",
-                            "props":{"y":27,"x":103,"width":145,"text":"张三","overflow":"hidden","name":"time","height":37,"fontSize":22,"font":"Microsoft YaHei","color":"#ed7e6b","align":"center"},
+                            "props":{"y":27,"x":103,"width":145,"text":"张三","overflow":"hidden","name":"name","height":37,"fontSize":22,"font":"Microsoft YaHei","color":"#ed7e6b","align":"center"},
                             "nodeParent":7,
-                            "label":"Label(time)",
+                            "label":"Label(name)",
                             "isDirectory":false,
                             "isAniNode":false,
                             "hasChild":false,
@@ -115,9 +111,8 @@
                                 ]
                         },
                         {
-                            "x":45,
                             "type":"Label",
-                            "props":{"y":27,"x":305,"width":104,"text":"+10000","name":"money","height":30,"fontSize":22,"font":"Microsoft YaHei","color":"#fff"},
+                            "props":{"y":21,"x":297,"width":104,"text":"+10000","name":"money","height":30,"fontSize":30,"font":"Microsoft YaHei","color":"yellow"},
                             "nodeParent":7,
                             "label":"Label(money)",
                             "isDirectory":false,
@@ -128,7 +123,6 @@
                                 ]
                         },
                         {
-                            "x":45,
                             "type":"Image",
                             "props":{"y":30,"x":259,"skin":"comp/round/board/gold.png"},
                             "nodeParent":7,
@@ -145,7 +139,7 @@
         {
             "x":15,
             "type":"Label",
-            "props":{"y":243,"x":340,"width":254,"valign":"middle","text":"2018年1月24日18:35:59","height":33,"fontSize":22,"font":"Microsoft YaHei","color":"#cdc8b3","align":"center"},
+            "props":{"y":233,"x":330,"width":254,"valign":"middle","text":"2018年1月24日18:35:59","height":33,"fontSize":22,"font":"Microsoft YaHei","color":"#cdc8b3","align":"center"},
             "nodeParent":1,
             "label":"Label",
             "isDirectory":false,

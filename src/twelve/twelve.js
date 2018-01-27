@@ -2,10 +2,12 @@
 var TwelveView = (function (_super) {
 
     // _super.uiView = Luck.filterImgAddVersion(_super.uiView)
-    function Twelve() {
+    function Twelve(msg) {
         Twelve.super(this);
         // this.productList.vScrollBarSkin = ''
         this.currentChip = 0
+        this.msg = msg
+        this.userAndPos = []
         this.menuBtn.on(Laya.Event.CLICK, this, this.menuBtnClick)
         this.backBtn.on(Laya.Event.CLICK, this, this.backBtnClick)
         this.bigCircle.on(Laya.Event.CLICK, this, this.bigCircleClick)
@@ -15,7 +17,6 @@ var TwelveView = (function (_super) {
         this.animalArr = ['鼠', '牛', '虎', '兔', '龙', '蛇', '马', '羊', '猴', '鸡', '狗', '猪']
         this.luckArr = ['福', '禄', '寿', '喜', '财']
         this.manArr = ['玉女', '金童']
-
         this.init()
     }
     Laya.class(Twelve, 'Twelve', _super);
@@ -24,74 +25,77 @@ var TwelveView = (function (_super) {
     // 初始化
     _prototype.init = function () {
         var self = this
+        var msg = this.msg
         self.turnOffChipBoard()
 
-        // 进入房间
-        var message = Pb.Lucky12EnterRoomRequest.create({});
-        Luck.send(packPbMsg2(Pb.Id.Lucky12EnterRoomRequest, Pb.Lucky12EnterRoomRequest.encode(message).finish()));
-        Luck.addHandle(new Luck.Handler(Pb.Id.Lucky12EnterRoomResponse, function (msg) {
+        console.log('进入房间')
+        self.addMask(328, self.bigCircle)
+        self.addMask(207.5, self.middleCircle)
+        self.addMask(106, self.smallCircle)
 
-            self.addMask(328, self.bigCircle)
-            self.addMask(207.5, self.middleCircle)
-            self.addMask(106, self.smallCircle)
+        // 大圈
+        self.bigPie = new Luck.createPie({
+            pie: {
+                length: 12,
+                color: '#00ffff',
+                parent: self.bigCircle.getChildByName('pieBox'),
+                centerX: 328,
+                centerY: 328,
+                radius: 328,
+            },
+            aniDuration: 5000
+        })
 
-            // 大圈
-            self.bigPie = new Luck.createPie({
-                pie: {
-                    length: 12,
-                    color: '#00ffff',
-                    parent: self.bigCircle.getChildByName('pieBox'),
-                    centerX: 328,
-                    centerY: 328,
-                    radius: 328,
-                },
-                aniDuration: 5000
-            })
+        // 中圈
+        self.middlePie = new Luck.createPie({
+            pie: {
+                length: 5,
+                color: '#00ffff',
+                parent: self.middleCircle.getChildByName('pieBox'),
+                centerX: 207.5,
+                centerY: 207.5,
+                radius: 207.5,
+            },
+            aniDuration: 3000
+        })
 
-            // 中圈
-            self.middlePie = new Luck.createPie({
-                pie: {
-                    length: 5,
-                    color: '#00ffff',
-                    parent: self.middleCircle.getChildByName('pieBox'),
-                    centerX: 207.5,
-                    centerY: 207.5,
-                    radius: 207.5,
-                },
-                aniDuration: 3000
-            })
+        // 小圈
+        self.smallPie = new Luck.createPie({
+            pie: {
+                length: 2,
+                color: '#00ffff',
+                parent: self.smallCircle.getChildByName('pieBox'),
+                centerX: 106,
+                centerY: 106,
+                radius: 106,
+            },
+            aniDuration: 1000
+        })
 
-            // 小圈
-            self.smallPie = new Luck.createPie({
-                pie: {
-                    length: 2,
-                    color: '#00ffff',
-                    parent: self.smallCircle.getChildByName('pieBox'),
-                    centerX: 106,
-                    centerY: 106,
-                    radius: 106,
-                },
-                aniDuration: 1000
-            })
+        this.updateUserInfo()
 
+        self.initHeadAddMask()      // 头像遮罩
+        self.showRestTime(msg.betRemainSecs)       // 剩余时间
+        self.updateUserList(msg.userList)       // 更新玩家信息
+        self.updateHistory(msg.historyList) // 更新历史记录
+        self.updateChip(msg.availableBetList)   // 更新筹码列表
 
-            self.initHeadAddMask()      // 头像遮罩
-            self.showRestTime(msg.betRemainSecs)       // 剩余时间
-            self.updateUserList()       // 更新玩家信息
-            self.updateHistory(msg.historyList) // 更新历史记录
-            self.updateChip(msg.availableBetList)   // 更新筹码列表
+        if (msg.betRemainSecs > 0) {
+            self.turnOnChipBoard()
+            Luck.alertView.show('还有' + msg.betRemainSecs + '下注时间！')
+        }
 
-            if (msg.betRemainSecs > 0) {
-                self.turnOnChipBoard()
-            } else {
-                // Luck.alertView.show('游戏还有' + Math.abs(msg.betRemainSecs) + '秒开始')
-            }
-
-        }));
-
+    
+        this.registNotis()
+    }
+    // 通知回调
+    _prototype.registNotis = function () {
+        var self = this
         // 有人进入
         Luck.addHandle(new Luck.Handler(Pb.Id.RoomUserInfoBroadcast, function (msg) {
-
+            if (msg.userInfo.uid && msg.userInfo.uid != Luck.selfUserInfo.uid) {
+                self.updateUserInfo(msg.userInfo)
+            }
         }));
 
         // 开始下注
@@ -102,7 +106,7 @@ var TwelveView = (function (_super) {
         }));
         // 有人下注
         Luck.addHandle(new Luck.Handler(Pb.Id.Lucky12BetBroadcast, function (msg) {
-            Luck.alertView.show('有人下注')
+            // Luck.alertView.show('有人下注')
 
         }));
         // 下注回调
@@ -111,6 +115,7 @@ var TwelveView = (function (_super) {
                 Luck.alertView.show(msg.msg)
             } else {
                 self.selfMoney.text = msg.coinCount
+                Luck.selfUserInfo.coinCount = msg.coinCount
             }
         }));
         // 游戏结束
@@ -121,15 +126,56 @@ var TwelveView = (function (_super) {
             self.middlePie.start(msg.result.result2Pos - 11, function () { })
             self.smallPie.start(msg.result.result1Pos - 1, function () { })
 
+            // 重置
             setTimeout(function () {
                 self.resetChipBoard()
-            }, 15000)
+                var v = new OverBoardView(msg.userList)
+                v.popup()
+            }, 10000)
 
         }));
     }
+    // 更新用户信息
+    _prototype.updateUserInfo = function (user) {
+        var dataArr = this.playerBox._childs
+
+        if (user) {
+            if (user.seatStatus == 2) {
+                for(var i = 0; i < this.userAndPos.length; i++){
+                    var obj = this.userAndPos[i]
+                    if(parseInt(obj.uid) == parseInt(user.uid)){
+                        obj.isSeat = false
+                        obj.uid = ''
+                        obj.entry._childs[1].text = '用戶名'
+                        obj.entry._childs[0].skin = 'comp/round/board/circle1.png'
+                        obj.entry._childs[0].scale(1, 1)
+                    }
+                }
+            } else if (user.seatStatus == 3) {
+                for (var i = 0; i < this.userAndPos.length; i++) {
+                    var obj = this.userAndPos[i]
+                    if (!obj.isSeat) {
+                        obj.entry._childs[1].text = user.nickname
+                        obj.entry._childs[0].skin = 'comp/headImg/' + user.avatarId + '.png'
+                        obj.entry._childs[0].scale(0.5, 0.5)
+                        obj.isSeat = true
+                        obj.uid = user.uid
+                        break
+                    }
+                }
+            }
+        } else {
+            for (var i = 0; i < dataArr.length; i++) {
+                var obj = {}
+                obj['isSeat'] = false
+                obj['entry'] = dataArr[i]
+                this.userAndPos.push(obj)
+            }
+        }
+    }
     // 发送筹码请求
     _prototype.sendBetChipReq = function (index) {
-        console.log(index,this.currentChip)
+        console.log(index, this.currentChip)
         var message = Pb.Lucky12BetRequest.create({
             betPos: index,
             betCount: this.currentChip
@@ -160,14 +206,25 @@ var TwelveView = (function (_super) {
             sum = parseInt(box._childs[1]._childs[0].text)
         }
 
+        sum += parseInt(this.currentChip)
+
         if (who == 1) {
             box._childs[2].visible = true
-            box._childs[2]._childs[0].text = sum + parseInt(this.currentChip)
+            box._childs[2]._childs[0].text = sum
         } else {
             box._childs[1].visible = true
-            box._childs[1]._childs[0].text = sum + parseInt(this.currentChip)
+            box._childs[1]._childs[0].text = sum
         }
 
+        this.updateTableAllSum(i, this.currentChip)
+    }
+    // 更新下注总和
+    _prototype.updateTableAllSum = function (index, number) {
+        index -= 1
+        this.tableAllSum._childs[index].visible = true
+        var lastNumber = this.tableAllSum._childs[index]._childs[0].text || 0
+        var newNumbber = parseInt(lastNumber) + parseInt(number)
+        this.tableAllSum._childs[index]._childs[0].text = newNumbber
     }
     // 外环
     _prototype.bigCircleClick = function (ev) {
@@ -195,7 +252,6 @@ var TwelveView = (function (_super) {
     }
     // 选择筹码
     _prototype.selectChip = function (ev) {
-
         var box = ev.target
         for (var i = 0; i < this.chipBox._childs.length; i++) {
             this.chipBox._childs[i]._childs[1].visible = true
@@ -224,20 +280,16 @@ var TwelveView = (function (_super) {
             }
             arr.push(temp)
         }
-        console.log(arr)
     }
     // 更新玩家列表
     _prototype.updateUserList = function (userList) {
-        // userList.filter(function (ele, i) {
-        //     console.log(ele)
-        //     return
-        // })
-        for (var i = 0; i < this.playerBox._childs.length; i++) {
-
-            var player = this.playerBox._childs[i]
-            var img = player._childs[0]
-            // img.skin = 'comp/headImg/'+
-        }
+        var self = this
+        userList.filter(function (ele, i) {
+            if(ele.uid != Luck.selfUserInfo.uid){
+                self.updateUserInfo(ele)
+            }
+        })
+         
     }
     // 重置筹码
     _prototype.resetChipBoard = function (circle) {
@@ -256,6 +308,16 @@ var TwelveView = (function (_super) {
                 box._childs[i]._childs[2]._childs[0].text = ''
             }
         }
+
+        for (var i = 0; i < 3; i++) {
+            var box = this.tableAllSum._childs[i]
+            box.visible = false
+            box._childs[0].text = ''
+        }
+
+        this.bigPie.hidePie()
+        this.middlePie.hidePie()
+        this.smallPie.hidePie()
     }
     // 更新筹码
     _prototype.updateChip = function (dataArr) {

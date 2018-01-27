@@ -2,7 +2,7 @@
     "x":0,
     "type":"Dialog",
     "selectedBox":7,
-    "selecteID":8,
+    "selecteID":9,
     "props":{"width":720,"sceneColor":"#000000","height":1180},
     "nodeParent":-1,
     "label":"Dialog",
@@ -117,7 +117,7 @@
                         {
                             "x":45,
                             "type":"Label",
-                            "props":{"y":43,"x":305,"width":96,"text":"+10000","name":"money","height":25,"fontSize":18,"font":"Microsoft YaHei","color":"#fff"},
+                            "props":{"y":42,"x":298,"width":96,"text":"+10000","name":"money","height":25,"fontSize":22,"font":"Microsoft YaHei","color":"#fff"},
                             "nodeParent":7,
                             "label":"Label(money)",
                             "isDirectory":false,
@@ -130,7 +130,7 @@
                         {
                             "x":45,
                             "type":"Image",
-                            "props":{"y":39,"x":273,"skin":"comp/round/alert/金豆-拷贝.png"},
+                            "props":{"y":37,"x":256,"skin":"comp/round/alert/金豆-拷贝.png"},
                             "nodeParent":7,
                             "label":"Image",
                             "isDirectory":false,

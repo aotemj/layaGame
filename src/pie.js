@@ -46,7 +46,7 @@ Luck.createPie = (function () {
         var count = 0       //  当前图片
         var interval = 500  //  间隔
         var speed = 30      //  速度  
-        var flag = true     //  是否执行
+        this.flag = true     //  是否执行
         var speedCount = 0        // 最高速度统计
         var canShowResult = false
         var loopSumCount = 0           // 循环总次数
@@ -84,9 +84,8 @@ Luck.createPie = (function () {
                 }
                 loopSumCount++
 
-
                 if (self.aniDuration <= time && canShowResult && (loopSumCount % 12) == end) {
-                    flag = false
+                    self.flag = false
                     clearInterval(self.s)
                     callback()
                     // setTimeout(function(){
@@ -96,7 +95,7 @@ Luck.createPie = (function () {
 
                 self.showPie(count)
 
-                if (flag) {
+                if (self.flag) {
                     go(interval)
                 }
 

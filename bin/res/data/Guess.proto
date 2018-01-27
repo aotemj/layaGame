@@ -49,6 +49,7 @@ message GuessBetBroadcast {
     GuessPos   bet_pos = 2;
     int32   bet_count = 3;
     GuessChipInfo   table_chip = 4;
+    int32   user_id = 5;
 }
 
 message GuessGameOverBroadcast {

@@ -94,6 +94,7 @@ message Lucky12BetBroadcast {
     Lucky12Pos   bet_pos = 2;
     int32   bet_count = 3;
     Lucky12ChipInfo   table_chip = 4;
+    int32   user_id = 5;
 }
 
 message Lucky12GameOverBroadcast {

@@ -84,10 +84,9 @@ message Lucky12BetRequest {
 message Lucky12BetResponse {
     STATUS  status  = 1;    //1:成功  -1:失败
     string  msg = 2;
-    Lucky12ChipInfo   table_chip = 3;
-    Lucky12ChipInfo   own_chip = 4;
-    repeated    int32   available_bet_list = 5; //可下的筹码列表   最多下注20万
-    int32   coin_count = 6;
+    Lucky12ChipInfo   own_chip = 3;
+    repeated    int32   available_bet_list = 4; //可下的筹码列表   最多下注20万
+    int32   coin_count = 5;
 }
 message Lucky12BetBroadcast {
     int32   seat_id = 1;

@@ -39,8 +39,13 @@ var UserView = (function (_super) {
             }
             // 十二生肖
             if (tab.tag == 2) {
-                Luck.twelveView = new TwelveView()
-                Laya.stage.addChild(Luck.twelveView)
+                var message = Pb.Lucky12EnterRoomRequest.create({});
+                Luck.send(packPbMsg2(Pb.Id.Lucky12EnterRoomRequest, Pb.Lucky12EnterRoomRequest.encode(message).finish()));
+                Luck.addHandle(new Luck.Handler(Pb.Id.Lucky12EnterRoomResponse, function (msg) {
+					console.log(msg)
+                    Luck.twelveView = new TwelveView(msg)
+                    Laya.stage.addChild(Luck.twelveView)
+                }));
             }
             // 猜大小
             if (tab.tag == 3) {

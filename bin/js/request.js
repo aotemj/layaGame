@@ -66,24 +66,15 @@ Luck.connect = function (option) {
         msg_arr = Luck.buffer2Object(msg);
         msg_id = msg_arr[0]
         msg_buf = msg_arr[1]
-        // <<<<<<< HEAD
-        //         if (msg_id != 3) {
-        //             __debug('receive data:', msg_id, Pb.getObjById(msg_id).decode(data_arr));
-        // =======
         msg_decode = Pb.getObjById(msg_id).decode(msg_buf)
         if (msg_id != 3) {
             __debug(msg_decode);
-            // >>>>>>> 1479b316d84948c30e49a423223fc982b6b21b4e
         }
         
         Luck.handlers.forEach(function (ele) {
             var key = ele.getKey();
             if (msg_id == key) {
-                // <<<<<<< HEAD
-                //                 ele.handle(msg_buf);
-                // =======
                 ele.handle(msg_decode);
-                // >>>>>>> 1479b316d84948c30e49a423223fc982b6b21b4e
             }
         });
 

@@ -100,9 +100,10 @@ function onAssetLoaded() {
 
 
 
+
 }
 function animationFinish() {
-    console.log(1)
+    console.log(12365987456654)
 }
 
 

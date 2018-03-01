@@ -47,7 +47,7 @@ var LoadingView = (function (_super) {
             n = parseInt(n)
             n = n < 10 ? ('0' + n) : n
             n = n > 30 ? 30 : n
-            console.log(n)
+            //console.log(n)
             self.img.skin = 'comp/loading/jiazai_000' + n + '.png'
             if (Luck.preLoadCount == list.length) {
                 self.removeSelf()

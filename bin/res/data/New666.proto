@@ -5,6 +5,11 @@ package proto_msg;
 option csharp_namespace = "Pb";
 
 
+enum New666ChipSide {
+    SIDE_DEFAULT = 0;   //骰子的那一面
+    SIDE_NUM = 1;   //只一数字的那一面
+}
+
 enum New666Pos {
     DICE_SINGLE = 0;
     DICE_DOUBLE = 1;
@@ -42,6 +47,42 @@ enum New666Pos {
     DICE_TRIPLE5 = 45;
     DICE_TRIPLE6 = 46;
     DICE_TRIPLE7 = 47;
+}
+//新666第二面下注
+enum New666Pos2 {
+    NUM_NONE = 0;
+    NUM_112 = 112;
+    NUM_113 = 113;
+    NUM_114 = 114;
+    NUM_115 = 115;
+    NUM_116 = 116;
+    NUM_221 = 221;
+    NUM_223 = 223;
+    NUM_224 = 224;
+    NUM_225 = 225;
+    NUM_226 = 226;
+
+    NUM_331 = 331;
+    NUM_332 = 332;
+    NUM_334 = 334;
+    NUM_335 = 335;
+    NUM_336 = 336;
+    NUM_441 = 441;
+    NUM_442 = 442;
+    NUM_443 = 443;
+    NUM_445 = 445;
+    NUM_446 = 446;
+
+    NUM_551 = 551;
+    NUM_552 = 552;
+    NUM_553 = 553;
+    NUM_554 = 554;
+    NUM_556 = 556;
+    NUM_661 = 661;
+    NUM_662 = 662;
+    NUM_663 = 663;
+    NUM_664 = 664;
+    NUM_665 = 665;
 }
 
 message New666ChipInfo {
@@ -83,14 +124,56 @@ message New666ChipInfo {
     int32 pos_triple7 = 37;
 }
 
-message New666Result {
-    int32   result1_pos = 1;
-    int32   result2_pos = 2;
-    int32   result3_pos = 3;
-    int32   result4_pos = 4;
-    int32   result5_pos = 5;
+message New666ChipInfo2 {
+    int32 pos_112 = 1;
+    int32 pos_113 = 2;
+    int32 pos_114 = 3;
+    int32 pos_115 = 4;
+    int32 pos_116 = 5;
+    int32 pos_221 = 6;
+    int32 pos_223 = 7;
+    int32 pos_224 = 8;
+    int32 pos_225 = 9;
+    int32 pos_226 = 10;
+
+    int32 pos_331 = 11;
+    int32 pos_332 = 12;
+    int32 pos_334 = 13;
+    int32 pos_335 = 14;
+    int32 pos_336 = 15;
+    int32 pos_441 = 16;
+    int32 pos_442 = 17;
+    int32 pos_443 = 18;
+    int32 pos_445 = 19;
+    int32 pos_446 = 20;
+
+    int32 pos_551 = 21;
+    int32 pos_552 = 22;
+    int32 pos_553 = 23;
+    int32 pos_554 = 24;
+    int32 pos_556 = 25;
+    int32 pos_661 = 26;
+    int32 pos_662 = 27;
+    int32 pos_663 = 28;
+    int32 pos_664 = 29;
+    int32 pos_665 = 30;
 }
 
+//骰子结果
+message New666DiceResult {
+    int32   dice1 = 1;
+    int32   dice2 = 2;
+    int32   dice3 = 3;
+}
+//
+//message New666Result {
+//    int32   result1_pos = 1;    //单双
+//    int32   result2_pos = 2;    //大小
+//    int32   result3_pos = 3;    //点数
+//    int32   result4_pos = 4;    //和值
+//    int32   result5_pos = 5;    //三号相同
+//    int32   result6_pos = 6;    //对子结果
+//}
 
 message New666EnterRoomRequest {
 }
@@ -102,36 +185,44 @@ message New666EnterRoomResponse {
     repeated    GameUserInfo    user_list = 5;
     New666ChipInfo   table_chip = 6;
     New666ChipInfo   own_chip = 7;
-    int32   bet_remain_secs = 8;
-    repeated New666Result history_list = 9;
-    repeated    int32   available_bet_list = 10;
+    New666ChipInfo   table_chip2 = 8;
+    New666ChipInfo   own_chip2 = 9;
+    int32   bet_remain_secs = 10;
+    repeated New666DiceResult history_list = 11;
+    repeated    int32   available_bet_list = 12;
 }
 
 //可下100, 1000, 1万
 message New666BetRequest {
-    New666Pos   bet_pos = 1;
-    int32   bet_count = 2; //下注数
+    New666ChipSide  bet_side = 1;
+    New666Pos   bet_pos = 2;
+    New666Pos2   bet_pos2 = 3;
+    int32   bet_count = 4; //下注数
 }
 message New666BetResponse {
     STATUS  status  = 1;    //1:成功  -1:失败
     string  msg = 2;
-    New666ChipInfo   table_chip = 3;
+    New666ChipSide  bet_side = 3;
     New666ChipInfo   own_chip = 4;
-    repeated    int32   available_bet_list = 5; //可下的筹码列表   最多下注20万
-    int32   coin_count = 6;
+    New666ChipInfo2   own_chip2 = 5;
+    repeated    int32   available_bet_list = 6; //可下的筹码列表   最多下注20万
+    int32   coin_count = 7;
 }
 message New666BetBroadcast {
     int32   seat_id = 1;
-    New666Pos   bet_pos = 2;
-    int32   bet_count = 3;
-    New666ChipInfo   table_chip = 4;
-    int32   user_id = 5;
+    New666ChipSide  bet_side = 2;
+    New666Pos   bet_pos = 3;
+    New666Pos2   bet_pos2 = 4;
+    int32   bet_count = 5;
+    New666ChipInfo   table_chip = 6;
+    New666ChipInfo2   table_chip2 = 7;
+    int32   user_id = 8;
 }
 
 message New666GameOverBroadcast {
     repeated GameOverUserInfo user_list = 1;
     int32   coin_count = 3;
-    New666Result    result = 4;
+    New666DiceResult    result = 4;
 }
 
 

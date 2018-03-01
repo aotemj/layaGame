@@ -92,7 +92,7 @@ var IndexView = (function (_super) {
     // 首页
     _prototype.tabBtnClick = function (tab) {
         // 移除当前视图
-
+		console.log(tab.tag, tab.tag)
         if (tab.tag > 1) {
 
             Luck.clearTimer()
@@ -106,6 +106,7 @@ var IndexView = (function (_super) {
                 var message = Pb.Lucky12EnterRoomRequest.create({});
                 Luck.send(packPbMsg2(Pb.Id.Lucky12EnterRoomRequest, Pb.Lucky12EnterRoomRequest.encode(message).finish()));
                 Luck.addHandle(new Luck.Handler(Pb.Id.Lucky12EnterRoomResponse, function (msg) {
+					console.log(msg)
                     Luck.twelveView = new TwelveView(msg)
                     Laya.stage.addChild(Luck.twelveView)
                 }));

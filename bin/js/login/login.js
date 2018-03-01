@@ -20,14 +20,14 @@ var LoginView = (function (_super) {
             if (msg.status == 1) {
                 Luck.selfUserInfo = msg.userInfo
                 self.removeSelf()
-                // Luck.indexView = new IndexView()
-                // Laya.stage.addChild(Luck.indexView)
-                var message = Pb.Lucky12EnterRoomRequest.create({});
-                Luck.send(packPbMsg2(Pb.Id.Lucky12EnterRoomRequest, Pb.Lucky12EnterRoomRequest.encode(message).finish()));
-                Luck.addHandle(new Luck.Handler(Pb.Id.Lucky12EnterRoomResponse, function (msg) {
-                    Luck.twelveView = new TwelveView(msg)
-                    Laya.stage.addChild(Luck.twelveView)
-                }));
+                Luck.indexView = new IndexView()
+                Laya.stage.addChild(Luck.indexView)
+                // var message = Pb.Lucky12EnterRoomRequest.create({});
+                // Luck.send(packPbMsg2(Pb.Id.Lucky12EnterRoomRequest, Pb.Lucky12EnterRoomRequest.encode(message).finish()));
+                // Luck.addHandle(new Luck.Handler(Pb.Id.Lucky12EnterRoomResponse, function (msg) {
+                //     Luck.twelveView = new TwelveView(msg)
+                //     Laya.stage.addChild(Luck.twelveView)
+                // }));
             } else {
                 Luck.alertView.show(msg.msg)
             }

@@ -28,7 +28,7 @@ var TwelveView = (function (_super) {
         var msg = this.msg
         self.turnOffChipBoard()
 
-        console.log('进入房间')
+        console.log('进入十二生肖房间')
         self.addMask(328, self.bigCircle)
         self.addMask(207.5, self.middleCircle)
         self.addMask(106, self.smallCircle)
@@ -530,8 +530,10 @@ var TwelveView = (function (_super) {
         Luck.addHandle(new Luck.Handler(Pb.Id.RoomLeaveResponse, function (msg) {
             if (msg.status == 1) {
                 self.removeSelf()
-                Luck.loginView = new LoginView()
-                Laya.stage.addChild(Luck.loginView)
+                // Luck.loginView = new LoginView()
+                // Laya.stage.addChild(Luck.loginView)
+                Luck.indexView = new IndexView()
+                Laya.stage.addChild(Luck.indexView)
             } else {
                 Luck.alertView.show(msg.msg)
             }

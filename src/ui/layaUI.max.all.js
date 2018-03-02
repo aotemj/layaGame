@@ -22,17 +22,86 @@ var alertViewUI=(function(_super){
 		alertViewUI.uiView={"type":"View","props":{"width":209,"height":65},"child":[{"type":"Label","props":{"wordWrap":true,"width":209,"var":"label","valign":"middle","text":"label","height":65,"fontSize":26,"color":"#fff","bold":true,"align":"center"}}]};
 		return alertViewUI;
 	})(View);
+var guessUI=(function(_super){
+		function guessUI(){
+			
+		    this.backBtn=null;
+		    this.warHistoryBtn=null;
+		    this.selfMoney=null;
+		    this.gameStatus=null;
+		    this.playerBox=null;
+		    this.clearBtn=null;
+		    this.shipBox=null;
+
+			guessUI.__super.call(this);
+		}
+
+		CLASS$(guessUI,'ui.guess.guessUI',_super);
+		var __proto__=guessUI.prototype;
+		__proto__.createChildren=function(){
+		    
+			laya.ui.Component.prototype.createChildren.call(this);
+			this.createView(guessUI.uiView);
+
+		}
+
+		guessUI.uiView={"type":"View","props":{"width":720,"height":1180},"child":[{"type":"Image","props":{"y":0,"x":0,"width":720,"skin":"comp/guess/bg.png","height":1180}},{"type":"Image","props":{"y":12,"x":20,"width":49,"var":"backBtn","skin":"comp/round/board/back.png","height":49}},{"type":"Image","props":{"y":17,"x":587,"width":97,"var":"warHistoryBtn","skin":"comp/guess/zhanji.png","height":32}},{"type":"Label","props":{"y":16,"x":400,"width":72,"var":"selfMoney","text":"31","height":35,"fontSize":26,"font":"Microsoft YaHei","color":"#f0d70e","align":"center"}},{"type":"Label","props":{"y":88,"x":326,"width":84,"var":"gameStatus","text":"准备开奖","height":35,"fontSize":18,"font":"Microsoft YaHei","color":"#fff","align":"center"}},{"type":"Box","props":{"y":84,"x":61,"width":510,"var":"playerBox","pivotY":-29,"pivotX":-43,"height":895},"child":[{"type":"Image","props":{"y":72,"x":-78,"width":90,"skin":"comp/round/board/headbg.png","height":90},"child":[{"type":"Image","props":{"y":-3,"x":-2,"skin":"comp/round/board/circle1.png"}},{"type":"Label","props":{"y":90,"x":-10,"width":110,"text":"用户名","overflow":"hidden","height":31,"fontSize":24,"font":"Microsoft YaHei","color":"#8c756d","align":"center"}}]},{"type":"Image","props":{"y":370,"x":-78,"skin":"comp/round/board/headbg.png"},"child":[{"type":"Image","props":{"y":-3,"x":-2,"skin":"comp/round/board/circle1.png"}},{"type":"Label","props":{"y":90,"x":-25,"width":139,"text":"用户名","overflow":"hidden","height":31,"fontSize":24,"font":"Microsoft YaHei","color":"#8c756d","align":"center"}}]},{"type":"Image","props":{"y":72,"x":498,"skin":"comp/round/board/headbg.png"},"child":[{"type":"Image","props":{"y":-3,"x":-2,"skin":"comp/round/board/circle1.png"}},{"type":"Label","props":{"y":90,"x":-10,"width":110,"text":"用户名","overflow":"hidden","height":31,"fontSize":24,"font":"Microsoft YaHei","color":"#8c756d","align":"center"}}]},{"type":"Image","props":{"y":370,"x":498,"skin":"comp/round/board/headbg.png"},"child":[{"type":"Image","props":{"y":-3,"x":-2,"skin":"comp/round/board/circle1.png"}},{"type":"Label","props":{"y":90,"x":-10,"width":110,"text":"用户名","overflow":"hidden","height":31,"fontSize":24,"font":"Microsoft YaHei","color":"#8c756d","align":"center"}}]},{"type":"Image","props":{"y":668,"x":-78,"skin":"comp/round/board/headbg.png"},"child":[{"type":"Image","props":{"y":-3,"x":-2,"skin":"comp/round/board/circle1.png"}},{"type":"Label","props":{"y":90,"x":-25,"width":139,"text":"用户名","overflow":"hidden","height":31,"fontSize":24,"font":"Microsoft YaHei","color":"#8c756d","align":"center"}}]},{"type":"Image","props":{"y":668,"x":498,"skin":"comp/round/board/headbg.png"},"child":[{"type":"Image","props":{"y":-3,"x":-2,"skin":"comp/round/board/circle1.png"}},{"type":"Label","props":{"y":90,"x":-10,"width":110,"text":"用户名","overflow":"hidden","height":31,"fontSize":24,"font":"Microsoft YaHei","color":"#8c756d","align":"center"}}]},{"type":"Image","props":{"y":833,"x":222.5,"skin":"comp/round/board/headbg.png"},"child":[{"type":"Image","props":{"y":-3,"x":-2,"skin":"comp/round/board/circle1.png"}},{"type":"Label","props":{"y":90,"x":-25,"width":139,"text":"用户名","overflow":"hidden","height":31,"fontSize":24,"font":"Microsoft YaHei","color":"#8c756d","align":"center"}}]}]},{"type":"Image","props":{"y":390,"x":324,"skin":"comp/guess/beishu.png"}},{"type":"Image","props":{"y":1098,"x":20,"var":"clearBtn","skin":"comp/guess/qingkong.png"}},{"type":"Box","props":{"y":1090,"x":127,"width":431,"var":"shipBox","height":90},"child":[{"type":"Image","props":{"y":10,"x":15,"width":70,"skin":"comp/guess/cm10-1.png","height":70}},{"type":"Image","props":{"y":10,"x":125,"skin":"comp/guess/cm50-1.png"}},{"type":"Image","props":{"y":10,"x":235,"skin":"comp/guess/cm100-1.png"}},{"type":"Image","props":{"y":10,"x":345,"skin":"comp/guess/cm1000-1.png"}},{"type":"Image","props":{"y":9,"x":441,"skin":"comp/guess/queding.png"}}]}]};
+		return guessUI;
+	})(View);
+var overBoardUI=(function(_super){
+		function overBoardUI(){
+			
+		    this.closeBtn=null;
+		    this.list=null;
+		    this.time=null;
+
+			overBoardUI.__super.call(this);
+		}
+
+		CLASS$(overBoardUI,'ui.guess.overBoardUI',_super);
+		var __proto__=overBoardUI.prototype;
+		__proto__.createChildren=function(){
+		    
+			laya.ui.Component.prototype.createChildren.call(this);
+			this.createView(overBoardUI.uiView);
+
+		}
+
+		overBoardUI.uiView={"type":"Dialog","props":{"width":720,"height":1180},"child":[{"type":"Image","props":{"y":-2,"x":1,"width":721,"skin":"comp/guess/Light beam.png","height":465}},{"type":"Image","props":{"y":85,"x":105,"skin":"comp/round/alert/弹窗.png"}},{"type":"Image","props":{"y":94,"x":552,"var":"closeBtn","skin":"comp/round/alert/x.png"}},{"type":"Label","props":{"y":124,"x":268,"width":166,"valign":"middle","text":"结 算","height":76,"fontSize":38,"font":"Microsoft YaHei","color":"#f6d144","align":"center"}},{"type":"List","props":{"y":258,"x":148,"width":430,"var":"list","spaceY":30,"height":771},"child":[{"type":"Box","props":{"renderType":"render"},"child":[{"type":"Image","props":{"skin":"comp/round/alert/bg-拷贝.png"}},{"type":"Image","props":{"y":15,"x":30,"width":60,"skin":"comp/round/alert/金豆-拷贝.png","name":"img","height":60}},{"type":"Label","props":{"y":27,"x":103,"width":111,"text":"张三","overflow":"hidden","name":"name","height":37,"fontSize":22,"font":"Microsoft YaHei","color":"#ed7e6b","align":"center"}},{"type":"Image","props":{"y":30,"x":213,"skin":"comp/round/board/gold.png"}},{"type":"Image","props":{"y":28,"x":262,"skin":"comp/guess/jia-+.png"}},{"type":"Image","props":{"y":25,"x":308,"skin":"comp/guess/jia-2.png"}},{"type":"Image","props":{"y":25,"x":338,"skin":"comp/guess/jia-2.png"}},{"type":"Image","props":{"y":25,"x":368,"skin":"comp/guess/jia-2.png"}}]}]},{"type":"Label","props":{"y":213,"x":330,"width":254,"var":"time","valign":"middle","text":"2018年1月24日18:35:59","height":33,"fontSize":22,"font":"Microsoft YaHei","color":"#cdc8b3","align":"center"}}]};
+		return overBoardUI;
+	})(Dialog);
+var warHistoryUI=(function(_super){
+		function warHistoryUI(){
+			
+		    this.closeBtn=null;
+		    this.list=null;
+
+			warHistoryUI.__super.call(this);
+		}
+
+		CLASS$(warHistoryUI,'ui.guess.warHistoryUI',_super);
+		var __proto__=warHistoryUI.prototype;
+		__proto__.createChildren=function(){
+		    
+			laya.ui.Component.prototype.createChildren.call(this);
+			this.createView(warHistoryUI.uiView);
+
+		}
+
+		warHistoryUI.uiView={"type":"Dialog","props":{"width":720,"height":1180},"child":[{"type":"Image","props":{"y":105,"x":105,"skin":"comp/round/alert/弹窗.png"}},{"type":"Image","props":{"y":114,"x":552,"var":"closeBtn","skin":"comp/round/alert/x.png"}},{"type":"Label","props":{"y":144,"x":268,"width":166,"valign":"middle","text":"战 绩","height":76,"fontSize":38,"font":"Microsoft YaHei","color":"#f6d144","align":"center"}},{"type":"List","props":{"y":267,"x":145,"width":430,"var":"list","spaceY":30,"height":771},"child":[{"type":"Box","props":{"renderType":"render"},"child":[{"type":"Image","props":{"skin":"comp/round/alert/bg-拷贝.png"}},{"type":"Image","props":{"y":14,"x":30,"width":60,"skin":"comp/round/alert/金豆-拷贝.png","name":"img","height":60}},{"type":"Label","props":{"y":10,"x":166,"width":220,"text":"2018年1月22日15:56:31","name":"time","height":25,"fontSize":22,"font":"Microsoft YaHei","color":"#ed7e6b"}},{"type":"Label","props":{"y":42,"x":298,"width":96,"text":"+10000","name":"money","height":25,"fontSize":22,"font":"Microsoft YaHei","color":"#fff"}},{"type":"Image","props":{"y":37,"x":256,"skin":"comp/round/alert/金豆-拷贝.png"}}]}]}]};
+		return warHistoryUI;
+	})(Dialog);
 var indexUI=(function(_super){
 		function indexUI(){
 			
+		    this.productList=null;
+		    this.panel1=null;
+		    this.panel2=null;
 		    this.indexBtn=null;
 		    this.twelveBtn=null;
 		    this.guessBtn=null;
 		    this.sixBtn=null;
 		    this.userBtn=null;
-		    this.productList=null;
-		    this.panel1=null;
-		    this.panel2=null;
 
 			indexUI.__super.call(this);
 		}
@@ -46,7 +115,7 @@ var indexUI=(function(_super){
 
 		}
 
-		indexUI.uiView={"type":"View","props":{"width":720,"height":1180},"child":[{"type":"Image","props":{"y":84,"x":0,"skin":"comp/index/Advertising position--BG.png"}},{"type":"Image","props":{"y":18,"x":120,"skin":"comp/index/Recharge--button.png"}},{"type":"Image","props":{"y":14,"x":359,"skin":"comp/index/Segmenting line.png"}},{"type":"Image","props":{"y":19,"x":472,"skin":"comp/index/Shopping Mall--button.png"}},{"type":"Label","props":{"y":384,"x":-1,"width":720,"height":100,"bgColor":"#0a0a0b"}},{"type":"Image","props":{"y":395,"x":30,"skin":"comp/index/Sign--icons.png"}},{"type":"Image","props":{"y":408,"x":584,"skin":"comp/index/Sign--button.png"}},{"type":"Label","props":{"y":401,"x":136,"width":208,"text":"每日签到，领奖励：","height":35,"fontSize":22,"font":"Microsoft YaHei","color":"#fff"}},{"type":"Label","props":{"y":401,"x":340,"width":82,"text":"20金豆","height":35,"fontSize":22,"font":"Microsoft YaHei","color":"#fcd127","bold":true}},{"type":"Label","props":{"y":498,"x":30,"width":82,"text":"热门","height":35,"fontSize":26,"font":"Microsoft YaHei","color":"#0a0a0b","bold":true}},{"type":"Label","props":{"y":545,"x":0,"width":720,"height":526,"bgColor":"#f2f2f2"}},{"type":"Box","props":{"y":1071,"x":0,"width":144,"var":"indexBtn","height":109},"child":[{"type":"Image","props":{"y":16,"x":51,"width":42,"skin":"comp/index/1.png","height":42}},{"type":"Label","props":{"y":60,"x":32,"width":79,"text":"首页","height":31,"fontSize":24,"font":"Microsoft YaHei","color":"#f92948","align":"center"}}]},{"type":"Box","props":{"y":1071,"x":144,"width":144,"var":"twelveBtn","height":109},"child":[{"type":"Image","props":{"y":16,"x":52,"width":42,"skin":"comp/index/-2.png","height":42}},{"type":"Label","props":{"y":60,"x":18,"width":110,"text":"十二生肖","height":31,"fontSize":24,"font":"Microsoft YaHei","color":"#a8a8a8","align":"center"}}]},{"type":"Box","props":{"y":1071,"x":288,"width":144,"var":"guessBtn","height":109},"child":[{"type":"Image","props":{"y":16,"x":51,"width":42,"skin":"comp/index/-3.png","height":42}},{"type":"Label","props":{"y":60,"x":32,"width":79,"text":"猜大小","height":31,"fontSize":24,"font":"Microsoft YaHei","color":"#a8a8a8","align":"center"}}]},{"type":"Box","props":{"y":1071,"x":432,"width":144,"var":"sixBtn","height":109},"child":[{"type":"Image","props":{"y":16,"x":51,"width":42,"skin":"comp/index/-4.png","height":42}},{"type":"Label","props":{"y":60,"x":32,"width":79,"text":"六六六","height":31,"fontSize":24,"font":"Microsoft YaHei","color":"#a8a8a8","align":"center"}}]},{"type":"Box","props":{"y":1071,"x":576,"width":144,"var":"userBtn","height":109},"child":[{"type":"Image","props":{"y":16,"x":51,"width":42,"skin":"comp/index/-5.png","height":42}},{"type":"Label","props":{"y":60,"x":32,"width":79,"text":"我的","height":31,"fontSize":24,"font":"Microsoft YaHei","color":"#a8a8a8","align":"center"}}]},{"type":"List","props":{"y":567,"x":30,"width":662,"var":"productList","spaceY":20,"spaceX":20,"height":501},"child":[{"type":"Box","props":{"renderType":"render"},"child":[{"type":"Image","props":{"skin":"comp/index/photo.png","name":"img"}},{"type":"Label","props":{"y":153,"width":150,"text":"猜大小","name":"label","height":32,"fontSize":22,"font":"Microsoft YaHei","color":"#111","align":"center"}}]}]},{"type":"Panel","props":{"y":139,"x":0,"width":720,"var":"panel1","height":65}},{"type":"Panel","props":{"y":258,"x":200,"width":720,"var":"panel2","height":65}}]};
+		indexUI.uiView={"type":"View","props":{"width":720,"height":1180},"child":[{"type":"Image","props":{"y":84,"x":0,"skin":"comp/index/Advertising position--BG.png"}},{"type":"Image","props":{"y":18,"x":120,"skin":"comp/index/Recharge--button.png"}},{"type":"Image","props":{"y":14,"x":359,"skin":"comp/index/Segmenting line.png"}},{"type":"Image","props":{"y":19,"x":472,"skin":"comp/index/Shopping Mall--button.png"}},{"type":"Label","props":{"y":384,"x":-1,"width":720,"height":100,"bgColor":"#0a0a0b"}},{"type":"Image","props":{"y":395,"x":30,"skin":"comp/index/Sign--icons.png"}},{"type":"Image","props":{"y":408,"x":584,"skin":"comp/index/Sign--button.png"}},{"type":"Label","props":{"y":401,"x":136,"width":208,"text":"每日签到，领奖励：","height":35,"fontSize":22,"font":"Microsoft YaHei","color":"#fff"}},{"type":"Label","props":{"y":401,"x":340,"width":82,"text":"20金豆","height":35,"fontSize":22,"font":"Microsoft YaHei","color":"#fcd127","bold":true}},{"type":"Label","props":{"y":498,"x":30,"width":82,"text":"热门","height":35,"fontSize":26,"font":"Microsoft YaHei","color":"#0a0a0b","bold":true}},{"type":"Label","props":{"y":545,"x":0,"width":720,"height":526,"bgColor":"#f2f2f2"}},{"type":"List","props":{"y":567,"x":30,"width":662,"var":"productList","spaceY":20,"spaceX":20,"height":501},"child":[{"type":"Box","props":{"renderType":"render"},"child":[{"type":"Image","props":{"skin":"comp/index/photo.png","name":"img"}},{"type":"Label","props":{"y":153,"width":150,"text":"猜大小","name":"label","height":32,"fontSize":22,"font":"Microsoft YaHei","color":"#111","align":"center"}}]}]},{"type":"Panel","props":{"y":139,"x":0,"width":720,"var":"panel1","height":65}},{"type":"Panel","props":{"y":258,"x":200,"width":720,"var":"panel2","height":65}},{"type":"Tab","props":{"y":1071,"x":0,"selectedIndex":0},"child":[{"type":"Box","props":{"width":144,"var":"indexBtn","height":109},"child":[{"type":"Image","props":{"y":16,"x":51,"width":42,"skin":"comp/index/1.png","height":42}},{"type":"Label","props":{"y":60,"x":32,"width":79,"text":"首页","height":31,"fontSize":24,"font":"Microsoft YaHei","color":"#f92948","align":"center"}}]},{"type":"Box","props":{"x":144,"width":144,"var":"twelveBtn","height":109},"child":[{"type":"Image","props":{"y":16,"x":52,"width":42,"skin":"comp/index/-2.png","height":42}},{"type":"Label","props":{"y":60,"x":18,"width":110,"text":"十二生肖","height":31,"fontSize":24,"font":"Microsoft YaHei","color":"#a8a8a8","align":"center"}}]},{"type":"Box","props":{"x":288,"width":144,"var":"guessBtn","height":109},"child":[{"type":"Image","props":{"y":16,"x":51,"width":42,"skin":"comp/index/-3.png","height":42}},{"type":"Label","props":{"y":60,"x":32,"width":79,"text":"猜大小","height":31,"fontSize":24,"font":"Microsoft YaHei","color":"#a8a8a8","align":"center"}}]},{"type":"Box","props":{"x":432,"width":144,"var":"sixBtn","height":109},"child":[{"type":"Image","props":{"y":16,"x":51,"width":42,"skin":"comp/index/-4.png","height":42}},{"type":"Label","props":{"y":60,"x":32,"width":79,"text":"六六六","height":31,"fontSize":24,"font":"Microsoft YaHei","color":"#a8a8a8","align":"center"}}]},{"type":"Box","props":{"x":576,"width":144,"var":"userBtn","height":109},"child":[{"type":"Image","props":{"y":16,"x":51,"width":42,"skin":"comp/index/-5.png","height":42}},{"type":"Label","props":{"y":60,"x":32,"width":79,"text":"我的","height":31,"fontSize":24,"font":"Microsoft YaHei","color":"#a8a8a8","align":"center"}}]}]}]};
 		return indexUI;
 	})(View);
 var loadingUI=(function(_super){
@@ -137,8 +206,27 @@ var runHourseUI=(function(_super){
 
 		}
 
-		runHourseUI.uiView={"type":"View","props":{"width":300,"height":38},"child":[{"type":"Image","props":{"y":0,"x":0,"width":300,"var":"img","skin":"comp/index/Check-in bar.png","height":38}},{"type":"Label","props":{"y":-6,"x":0,"width":300,"var":"label","valign":"middle","text":"label","height":38,"fontSize":22,"font":"Microsoft YaHei","color":"#111","align":"center"}}]};
+		runHourseUI.uiView={"type":"View","props":{"width":300,"height":38},"child":[{"type":"Image","props":{"y":0,"x":0,"width":300,"var":"img","skin":"comp/index/Check-in bar.png","height":38}},{"type":"Label","props":{"y":0,"x":0,"width":300,"var":"label","valign":"middle","text":"label","height":38,"fontSize":22,"font":"Microsoft YaHei","color":"#111","align":"center"}}]};
 		return runHourseUI;
+	})(View);
+var sixUI=(function(_super){
+		function sixUI(){
+			
+
+			sixUI.__super.call(this);
+		}
+
+		CLASS$(sixUI,'ui.six.sixUI',_super);
+		var __proto__=sixUI.prototype;
+		__proto__.createChildren=function(){
+		    
+			laya.ui.Component.prototype.createChildren.call(this);
+			this.createView(sixUI.uiView);
+
+		}
+
+		sixUI.uiView={"type":"View","props":{"width":720,"height":1180},"child":[{"type":"Image","props":{"y":107,"x":77,"width":566,"skin":"comp/six/jiesuan--bg.png","height":966}}]};
+		return sixUI;
 	})(View);
 var overBoardUI=(function(_super){
 		function overBoardUI(){
@@ -216,6 +304,25 @@ var warHistoryUI=(function(_super){
 		warHistoryUI.uiView={"type":"Dialog","props":{"width":720,"height":1180},"child":[{"type":"Image","props":{"y":105,"x":105,"skin":"comp/round/alert/弹窗.png"}},{"type":"Image","props":{"y":114,"x":552,"var":"closeBtn","skin":"comp/round/alert/x.png"}},{"type":"Label","props":{"y":144,"x":268,"width":166,"valign":"middle","text":"战 绩","height":76,"fontSize":38,"font":"Microsoft YaHei","color":"#f6d144","align":"center"}},{"type":"List","props":{"y":267,"x":145,"width":430,"var":"list","spaceY":30,"height":771},"child":[{"type":"Box","props":{"renderType":"render"},"child":[{"type":"Image","props":{"skin":"comp/round/alert/bg-拷贝.png"}},{"type":"Image","props":{"y":14,"x":30,"width":60,"skin":"comp/round/alert/金豆-拷贝.png","name":"img","height":60}},{"type":"Label","props":{"y":10,"x":166,"width":220,"text":"2018年1月22日15:56:31","name":"time","height":25,"fontSize":22,"font":"Microsoft YaHei","color":"#ed7e6b"}},{"type":"Label","props":{"y":42,"x":298,"width":96,"text":"+10000","name":"money","height":25,"fontSize":22,"font":"Microsoft YaHei","color":"#fff"}},{"type":"Image","props":{"y":37,"x":256,"skin":"comp/round/alert/金豆-拷贝.png"}}]}]}]};
 		return warHistoryUI;
 	})(Dialog);
+var guessUI=(function(_super){
+		function guessUI(){
+			
+
+			guessUI.__super.call(this);
+		}
+
+		CLASS$(guessUI,'ui.user.guessUI',_super);
+		var __proto__=guessUI.prototype;
+		__proto__.createChildren=function(){
+		    
+			laya.ui.Component.prototype.createChildren.call(this);
+			this.createView(guessUI.uiView);
+
+		}
+
+		guessUI.uiView={"type":"View","props":{"width":720,"height":1140}};
+		return guessUI;
+	})(View);
 var userUI=(function(_super){
 		function userUI(){
 			

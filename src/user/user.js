@@ -49,7 +49,13 @@ var UserView = (function (_super) {
             }
             // 猜大小
             if (tab.tag == 3) {
-
+                var message = Pb.GuessEnterRoomRequest.create({});
+                Luck.send(packPbMsg2(Pb.Id.GuessEnterRoomRequest, Pb.GuessEnterRoomRequest.encode(message).finish()));
+                Luck.addHandle(new Luck.Handler(Pb.Id.GuessEnterRoomResponse, function (msg) {
+					console.log(msg)
+                    Luck.guessView = new GuessView(msg)
+                    Laya.stage.addChild(Luck.guessView)
+                }));
             }
             // 666
             if (tab.tag == 4) {

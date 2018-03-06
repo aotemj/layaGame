@@ -192,8 +192,9 @@ var TwelveView = (function (_super) {
     }
     // 更新用户信息
     _prototype.updateUserInfo = function (user) {
+        
         var dataArr = this.playerBox._childs
-
+        // console.log(dataArr);
         if (user) {
             if (user.seatStatus == 2) {
                 for (var i = 0; i < this.userAndPos.length; i++) {
@@ -364,6 +365,7 @@ var TwelveView = (function (_super) {
     _prototype.bigCircleClick = function (ev) {
         var index = parseInt((this.getAngle(ev.stageX, ev.stageY) + 15) / 30)
         var str = this.animalArr[index] || this.animalArr[0]
+        console.log('-----');
         console.log(str, index)
         this.sendBetChipReq(index + 21)
         this.showBetChipResult(1, [3, index == 12 ? 0 : index])
@@ -380,7 +382,7 @@ var TwelveView = (function (_super) {
     _prototype.smallCircleClick = function (ev) {
         var index = parseInt(this.getAngle(ev.stageX, ev.stageY) / 180)
         var str = this.manArr[index] || this.manArr[0]
-        console.log(str, index)
+        // console.log(str, index)
         this.sendBetChipReq(index == 0 ? 1 : 2)
         this.showBetChipResult(1, [1, index])
     }
@@ -456,7 +458,7 @@ var TwelveView = (function (_super) {
     }
     // 更新筹码
     _prototype.updateChip = function (dataArr) {
-
+        
         for (var i = 0; i < dataArr.length; i++) {
             var box = this.chipBox._childs[i]
             var str = dataArr[i]
@@ -542,9 +544,12 @@ var TwelveView = (function (_super) {
     }
     // 头像遮罩
     _prototype.initHeadAddMask = function () {
+        // console.log(this.playerBox._childs);
         for (var i = 0; i < this.playerBox._childs.length; i++) {
             var player = this.playerBox._childs[i]
+            // console.log(player);
             var img = player._childs[0]
+            // console.log(img);
             var sprite = new Laya.Sprite();
             sprite.graphics.drawCircle(94, 94, 94, '#00ffff')
             img.mask = sprite
@@ -574,7 +579,7 @@ var TwelveView = (function (_super) {
     // 圆环添加点击遮罩
     _prototype.addMask = function (r, view) {
         var sprite = new Laya.Sprite();
-        sprite.graphics.drawCircle(r, r, r, '#00ffff')
+        sprite.graphics.drawCircle(r, r, r, '#f40')
         view.mask = sprite
 
         var graphics = new Laya.Graphics();

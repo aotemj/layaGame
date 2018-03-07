@@ -1,8 +1,8 @@
 {
     "x":0,
     "type":"View",
-    "selectedBox":64,
-    "selecteID":19,
+    "selectedBox":1,
+    "selecteID":70,
     "props":{"width":720,"sceneColor":"#000000","height":1180},
     "nodeParent":-1,
     "label":"View",
@@ -23,7 +23,8 @@
             "hasChild":false,
             "compId":2,
             "child":[
-                ]
+                ],
+            "$HIDDEN":false
         },
         {
             "x":15,
@@ -36,7 +37,8 @@
             "hasChild":false,
             "compId":8,
             "child":[
-                ]
+                ],
+            "$HIDDEN":false
         },
         {
             "x":15,
@@ -58,14 +60,13 @@
             "props":{"y":589,"x":360,"var":"bigCircle","skin":"comp/round/board/dierceng.png","pivotY":328.5,"pivotX":328},
             "nodeParent":1,
             "label":"Image(bigCircle)",
-            "isOpen":true,
+            "isOpen":false,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
             "compId":67,
             "child":[
                 {
-                    "x":30,
                     "type":"Box",
                     "props":{"y":0,"x":0,"width":656,"name":"pieBox","height":656},
                     "nodeParent":67,
@@ -79,7 +80,6 @@
                     "$HIDDEN":false
                 },
                 {
-                    "x":30,
                     "type":"Box",
                     "props":{"y":31,"x":24,"name":"resultBox"},
                     "nodeParent":67,
@@ -91,7 +91,6 @@
                     "compId":148,
                     "child":[
                         {
-                            "x":45,
                             "type":"Box",
                             "props":{"x":266},
                             "nodeParent":148,
@@ -103,7 +102,6 @@
                             "compId":77,
                             "child":[
                                 {
-                                    "x":60,
                                     "type":"Image",
                                     "props":{"y":15,"x":20,"visible":false,"skin":"comp/round/board/gold.png"},
                                     "nodeParent":77,
@@ -116,7 +114,6 @@
                                         ]
                                 },
                                 {
-                                    "x":60,
                                     "type":"Image",
                                     "props":{"width":80,"visible":false,"skin":"comp/round/board/chipbg.png","height":17},
                                     "nodeParent":77,
@@ -142,7 +139,6 @@
                                         }]
                                 },
                                 {
-                                    "x":60,
                                     "type":"Image",
                                     "props":{"y":39,"width":80,"visible":false,"skin":"comp/round/board/chipbg.png","height":17},
                                     "nodeParent":77,
@@ -169,7 +165,6 @@
                                 }]
                         },
                         {
-                            "x":45,
                             "type":"Box",
                             "props":{"y":44,"x":403},
                             "nodeParent":148,
@@ -244,7 +239,6 @@
                                 }]
                         },
                         {
-                            "x":45,
                             "type":"Box",
                             "props":{"y":136,"x":507},
                             "nodeParent":148,
@@ -319,7 +313,6 @@
                                 }]
                         },
                         {
-                            "x":45,
                             "type":"Box",
                             "props":{"y":269,"x":538},
                             "nodeParent":148,
@@ -394,7 +387,6 @@
                                 }]
                         },
                         {
-                            "x":45,
                             "type":"Box",
                             "props":{"y":392,"x":507},
                             "nodeParent":148,
@@ -469,7 +461,6 @@
                                 }]
                         },
                         {
-                            "x":45,
                             "type":"Box",
                             "props":{"y":501,"x":403},
                             "nodeParent":148,
@@ -544,7 +535,6 @@
                                 }]
                         },
                         {
-                            "x":45,
                             "type":"Box",
                             "props":{"y":529,"x":266},
                             "nodeParent":148,
@@ -619,7 +609,6 @@
                                 }]
                         },
                         {
-                            "x":45,
                             "type":"Box",
                             "props":{"y":501,"x":135},
                             "nodeParent":148,
@@ -694,7 +683,6 @@
                                 }]
                         },
                         {
-                            "x":45,
                             "type":"Box",
                             "props":{"y":392,"x":35},
                             "nodeParent":148,
@@ -769,7 +757,6 @@
                                 }]
                         },
                         {
-                            "x":45,
                             "type":"Box",
                             "props":{"y":269},
                             "nodeParent":148,
@@ -844,7 +831,6 @@
                                 }]
                         },
                         {
-                            "x":45,
                             "type":"Box",
                             "props":{"y":136,"x":35},
                             "nodeParent":148,
@@ -919,7 +905,6 @@
                                 }]
                         },
                         {
-                            "x":45,
                             "type":"Box",
                             "props":{"y":44,"x":135},
                             "nodeParent":148,
@@ -1401,8 +1386,10 @@
                                                 ]
                                         }]
                                 }]
-                        }]
-                }]
+                        }],
+                    "$HIDDEN":false
+                }],
+            "$HIDDEN":false
         },
         {
             "x":15,
@@ -1426,7 +1413,8 @@
                     "hasChild":false,
                     "compId":147,
                     "child":[
-                        ]
+                        ],
+                    "$HIDDEN":false
                 },
                 {
                     "type":"Box",
@@ -1511,7 +1499,8 @@
                                             "child":[
                                                 ]
                                         }]
-                                }]
+                                }],
+                            "$HIDDEN":false
                         },
                         {
                             "type":"Box",
@@ -1586,8 +1575,10 @@
                                                 ]
                                         }]
                                 }]
-                        }]
-                }]
+                        }],
+                    "$HIDDEN":false
+                }],
+            "$HIDDEN":false
         },
         {
             "x":15,
@@ -1600,7 +1591,8 @@
             "hasChild":false,
             "compId":5,
             "child":[
-                ]
+                ],
+            "$HIDDEN":false
         },
         {
             "x":15,
@@ -1649,7 +1641,8 @@
                     "compId":323,
                     "child":[
                         ]
-                }]
+                }],
+            "$HIDDEN":false
         },
         {
             "x":15,
@@ -1686,7 +1679,8 @@
                     "compId":325,
                     "child":[
                         ]
-                }]
+                }],
+            "$HIDDEN":false
         },
         {
             "x":15,
@@ -1694,7 +1688,7 @@
             "props":{"y":185,"x":67,"width":139,"var":"historyList","text":"玉女·福·羊","height":39,"fontSize":26,"font":"Microsoft YaHei","color":"#c89290"},
             "nodeParent":1,
             "label":"Label(historyList)",
-            "isOpen":true,
+            "isOpen":false,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
@@ -1712,7 +1706,8 @@
                     "compId":6,
                     "child":[
                         ]
-                }]
+                }],
+            "$HIDDEN":false
         },
         {
             "x":15,
@@ -1726,7 +1721,8 @@
             "hasChild":false,
             "compId":14,
             "child":[
-                ]
+                ],
+            "$HIDDEN":false
         },
         {
             "x":15,
@@ -1751,7 +1747,8 @@
                     "compId":17,
                     "child":[
                         ]
-                }]
+                }],
+            "$HIDDEN":false
         },
         {
             "x":15,
@@ -1776,7 +1773,8 @@
                     "compId":32,
                     "child":[
                         ]
-                }]
+                }],
+            "$HIDDEN":false
         },
         {
             "x":15,
@@ -1801,7 +1799,8 @@
                     "compId":33,
                     "child":[
                         ]
-                }]
+                }],
+            "$HIDDEN":false
         },
         {
             "x":15,
@@ -1826,7 +1825,8 @@
                     "compId":34,
                     "child":[
                         ]
-                }]
+                }],
+            "$HIDDEN":false
         },
         {
             "x":15,
@@ -1839,7 +1839,8 @@
             "hasChild":false,
             "compId":25,
             "child":[
-                ]
+                ],
+            "$HIDDEN":false
         },
         {
             "x":15,
@@ -1852,7 +1853,8 @@
             "hasChild":false,
             "compId":26,
             "child":[
-                ]
+                ],
+            "$HIDDEN":false
         },
         {
             "x":15,
@@ -1865,7 +1867,8 @@
             "hasChild":false,
             "compId":27,
             "child":[
-                ]
+                ],
+            "$HIDDEN":false
         },
         {
             "x":15,
@@ -1878,7 +1881,8 @@
             "hasChild":false,
             "compId":28,
             "child":[
-                ]
+                ],
+            "$HIDDEN":false
         },
         {
             "x":15,
@@ -1891,7 +1895,8 @@
             "hasChild":false,
             "compId":29,
             "child":[
-                ]
+                ],
+            "$HIDDEN":false
         },
         {
             "x":15,
@@ -1904,7 +1909,8 @@
             "hasChild":false,
             "compId":30,
             "child":[
-                ]
+                ],
+            "$HIDDEN":false
         },
         {
             "x":15,
@@ -1917,7 +1923,8 @@
             "hasChild":false,
             "compId":31,
             "child":[
-                ]
+                ],
+            "$HIDDEN":false
         },
         {
             "x":15,
@@ -1931,7 +1938,8 @@
             "hasChild":false,
             "compId":35,
             "child":[
-                ]
+                ],
+            "$HIDDEN":false
         },
         {
             "x":15,
@@ -1945,7 +1953,8 @@
             "hasChild":false,
             "compId":37,
             "child":[
-                ]
+                ],
+            "$HIDDEN":false
         },
         {
             "x":15,
@@ -1959,7 +1968,8 @@
             "hasChild":false,
             "compId":43,
             "child":[
-                ]
+                ],
+            "$HIDDEN":false
         },
         {
             "x":15,
@@ -2006,14 +2016,13 @@
             "props":{"y":1070,"x":269,"width":431,"var":"chipBox","height":94},
             "nodeParent":1,
             "label":"Box(chipBox)",
-            "isOpen":true,
+            "isOpen":false,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
             "compId":64,
             "child":[
                 {
-                    "x":30,
                     "type":"Image",
                     "props":{"y":2,"x":14,"skin":"comp/round/board/chouma.png"},
                     "nodeParent":64,
@@ -2025,7 +2034,6 @@
                     "compId":19,
                     "child":[
                         {
-                            "x":45,
                             "type":"Label",
                             "props":{"y":61,"x":4,"width":87,"valign":"middle","text":"100","height":32,"fontSize":22,"font":"Microsoft YaHei","color":"#663620","align":"center"},
                             "nodeParent":19,
@@ -2039,7 +2047,6 @@
                                 ]
                         },
                         {
-                            "x":45,
                             "type":"Image",
                             "props":{"y":0,"x":0,"visible":false,"skin":"comp/round/board/chouma-zz.png"},
                             "nodeParent":19,
@@ -2054,7 +2061,6 @@
                         }]
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "props":{"y":2,"x":164,"skin":"comp/round/board/chouma.png"},
                     "nodeParent":64,
@@ -2092,7 +2098,6 @@
                         }]
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "props":{"y":2,"x":312,"skin":"comp/round/board/chouma.png"},
                     "nodeParent":64,
@@ -2128,7 +2133,8 @@
                             "child":[
                                 ]
                         }]
-                }]
+                }],
+            "$HIDDEN":false
         },
         {
             "x":15,
@@ -2141,7 +2147,8 @@
             "hasChild":false,
             "compId":69,
             "child":[
-                ]
+                ],
+            "$HIDDEN":false
         },
         {
             "x":15,
@@ -2306,7 +2313,8 @@
                                 ]
                         }],
                     "$HIDDEN":false
-                }]
+                }],
+            "$HIDDEN":false
         },
         {
             "x":15,
@@ -2325,7 +2333,7 @@
                     "props":{"y":256,"x":0,"width":91,"visible":false,"skin":"comp/round/board/chipbg.png","height":20},
                     "nodeParent":320,
                     "label":"Image",
-                    "isOpen":false,
+                    "isOpen":true,
                     "isDirectory":true,
                     "isAniNode":true,
                     "hasChild":true,
@@ -2349,7 +2357,7 @@
                     "props":{"y":154,"x":0,"width":91,"visible":false,"skin":"comp/round/board/chipbg.png","height":20},
                     "nodeParent":320,
                     "label":"Image",
-                    "isOpen":false,
+                    "isOpen":true,
                     "isDirectory":true,
                     "isAniNode":true,
                     "hasChild":true,
@@ -2373,7 +2381,7 @@
                     "props":{"width":91,"visible":false,"skin":"comp/round/board/chipbg.png","height":20},
                     "nodeParent":320,
                     "label":"Image",
-                    "isOpen":false,
+                    "isOpen":true,
                     "isDirectory":true,
                     "isAniNode":true,
                     "hasChild":true,
@@ -2390,7 +2398,8 @@
                             "compId":314,
                             "child":[
                                 ]
-                        }]
+                        }],
+                    "$HIDDEN":false
                 }]
         }],
     "animations":[

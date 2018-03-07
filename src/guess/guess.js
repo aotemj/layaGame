@@ -7,12 +7,17 @@ var GuessView = (function (_super) {
         // this.productList.vScrollBarSkin = ''
         // this.currentChip = 0
         this.msg = msg
+        
         this.userAndPos = []
         this.backBtn.on(Laya.Event.CLICK, this, this.backBtnClick)
         this.warHistoryBtn.on(Laya.Event.CLICK, this, this.warHistoryBtnClick)
         this.bigRect.on(Laya.Event.CLICK, this, this.bigRectClick)
-        this.faRect.on(Laya.Event.CLICK, this, this.faRectClick)
+        this.richRect.on(Laya.Event.CLICK, this, this.richRectClick)
         this.smallRect.on(Laya.Event.CLICK, this, this.smallRectClick)
+        this.clearBtn.on(Laya.Event.CLICK,this,this.clearBtnClick);
+        // console.log(this.historyList._childs[0].text);
+        this.apeArr= [];//已下注筹码数组
+        this.time = 1000;
         this.init()
     }
      Laya.class(Guess, 'Guess', _super);
@@ -21,14 +26,17 @@ var GuessView = (function (_super) {
      _prototype.init = function () {
         var self = this
         var msg = this.msg
+        // console.log(msg.historyList);
+        // console.log();
         self.turnOffChipBoard()
-         var sp = new Laya.Sprite();
+        //  var sp = new Laya.Sprite();
          //画矩形
-        sp.graphics.drawRect(0, 00, 100, 100, "#f40");
+        // sp.graphics.drawRect(0, 00, 100, 100, "#f40");
 
-        Laya.stage.addChild(sp);
+        // Laya.stage.addChild(sp);
         
-        console.log('进入猜大小房间');
+        // console.log('进入猜大小房间');
+
         // self.addMask(328, self.bigCircle)
         // self.addMask(207.5, self.middleCircle)
         // self.addMask(106, self.smallCircle)
@@ -38,12 +46,16 @@ var GuessView = (function (_super) {
         self.initHeadAddMask()      // 头像遮罩
         self.showRestTime(msg.betRemainSecs)       // 剩余时间
         self.updateUserList(msg.userList)       // 更新玩家信息
+        var arr = self.updateHistory(msg.historyList) // 更新历史记录
         self.updateChip(msg.availableBetList)   // 更新筹码列表
-
+        self.hiddenResult();//隐藏结果列表
+        //   self.showResult(msg.result);//显示结果列表
+        // console.log(arr);
          if (msg.betRemainSecs > 0) {
             self.turnOnChipBoard()
             Luck.alertView.show('还有' + msg.betRemainSecs + '下注时间！')
         }
+         this.registNotis()
      }
      // 返回
     _prototype.backBtnClick = function () {
@@ -105,22 +117,185 @@ var GuessView = (function (_super) {
         Luck.warHistory.popup()
     }
     // "大"矩形点击
-    _prototype.bigRectClick = function(ev){
-        console.log('大巨星点击');
-         var index = parseInt((this.getAngle(ev.stageX, ev.stageY) + 15) / 30)
-        var str = this.animalArr[index] || this.animalArr[0]
-        console.log(str, index) 
-        this.sendBetChipReq(index + 21)
-        this.showBetChipResult(1, [3, index == 12 ? 0 : index])
+    _prototype.bigRectClick = function(e){
+        let index = 1
+         let pos ={
+             x:e.target.mouseX+150,
+             y:e.target.mouseY+120
+         }
+        // let imgUrl = "comp/guess/cm"+this.currentChip+"-1.png"
+        let imgUrl = "comp/guess/Bet.png"
+        
+        this.sendBetChipReq(index);
+        this.showBetChipResult("who",pos,imgUrl)
     }
     // "发"矩形点击
-    _prototype.faRectClick = function(e){
-        console.log('发巨星点击');
-        console.log(e.target);
+    _prototype.richRectClick = function(e){
+        // console.log('发巨星点击');
+        let index = 0;
+        
+        let pos ={
+             x:e.target.mouseX + 150,
+             y:e.target.mouseY + 460
+         }
+        // let imgUrl = "comp/guess/cm"+this.currentChip+"-1.png"
+        let imgUrl = "comp/guess/Bet.png"
+        
+        this.sendBetChipReq(index);
+        this.showBetChipResult("who",pos,imgUrl)
+       
+        
+        // this.showBetChipResult()
     }
     // "小"矩形点击
-    _prototype.smallRectClick = function(){
-        console.log('小巨星点击');
+    _prototype.smallRectClick = function(e){
+        let index = 2;
+        // console.log(this.currentChip);
+         let pos ={
+             x:e.target.mouseX+150,
+             y:e.target.mouseY+600
+         }
+        // let imgUrl = "comp/guess/cm"+this.currentChip+"-1.png"
+        let imgUrl = "comp/guess/Bet.png"
+        this.sendBetChipReq(index);
+        this.showBetChipResult("who",pos,imgUrl)
+    }
+    //点击清除筹码 
+    _prototype.clearBtnClick = function(){
+        for(var i =this.apeArr.length-1;i>-1;i--){
+            this.apeArr[i].destroy();
+        }
+    }
+    // 显示下注数
+    _prototype.showBetChipResult = function (who, pos,imgUrl) {
+        var self = this;
+        var Sprite  = Laya.Sprite;
+        var Stage   = Laya.Stage;
+        var Texture = Laya.Texture;
+        var Browser = Laya.Browser;
+        var Handler = Laya.Handler;
+        var WebGL   = Laya.WebGL;
+        (function(){
+            Laya.init(Browser.clientWidth, Browser.clientHeight);
+            Laya.stage.alignV = Stage.ALIGN_TOP;
+            Laya.stage.alignH = Stage.ALIGN_CENTER;
+            Laya.stage.scaleMode = "showall";
+            Laya.stage.bgColor = "#232628";
+            // var ape;
+            showApe();
+        })();
+        function showApe(){
+            var ape = new Sprite();
+            Laya.stage.addChild(ape);
+            ape.pos(pos.x,pos.y);
+            ape.loadImage(imgUrl);
+            self.apeArr.push(ape);
+            // console.log(self.apeArr);
+            // ape.destroy();
+        }
+
+    }
+    // 隐藏结果
+    _prototype.hiddenResult = function (){
+        for(var i = 0;i<this.resultBox._childs.length;i++){
+            this.resultBox._childs[i].visible = false;
+        }
+    }
+    // 显示结果列表
+    _prototype.showResult = function(result){
+        var self = this;
+        // console.log();
+        //动画函数   
+        var luck={
+			index:0,	//当前转动到哪个位置，起点位置
+			count:0,	//总共有多少个位置
+			timer:0,	//setTimeout的ID，用clearTimeout清除
+			speed:20,	//初始转动速度
+			times:0,	//转动次数
+			cycle:50,	//转动基本次数：即至少需要转动多少次再进入抽奖环节
+			prize:-1,	//中奖位置
+			init:function(){
+                //   console.log(self.resultBox._childs.length);
+				if (self.resultBox._childs.length>0) {
+					$luck =self.resultBox;
+					$units =self.resultBox._childs;
+					this.obj = $luck;
+					this.count = $units.length;
+                    for(var i =0;i<this.count;i++){
+                        $units[i].visible = false;
+                    }
+                    $units[this.index].visible = true;
+				};
+			},
+			roll:function(){
+				var index = this.index;
+				var count = this.count;
+				var luck = this.obj;
+                for(var i=0;i<self.resultBox._childs.length;i++){
+                    self.resultBox._childs[i].visible = false;
+                }
+				index += 1;
+				if (index>count-1) {
+					index = 0;
+				};
+                self.resultBox._childs[index].visible=true;
+				this.index=index;
+				return false;
+			},
+			stop:function(index){
+				this.prize=index;
+				return false;
+			}
+		};
+        function roll(){
+			luck.times += 1;
+			luck.roll();
+			if (luck.times > luck.cycle+10 && luck.prize==luck.index) {
+				clearTimeout(luck.timer);
+				luck.prize=-1;
+				luck.times=0;
+				click=false;
+			}else{
+				if (luck.times<luck.cycle) {
+					luck.speed -= 10;
+				}else if(luck.times==luck.cycle) {
+					// var index = Math.random()*(luck.count)|0;
+					luck.prize = result-1;
+				}else{
+					if (luck.times > luck.cycle+10 && ((luck.prize==0 && luck.index==7) || luck.prize==luck.index+1)) {
+						luck.speed += 110;
+					}else{
+						luck.speed += 20;
+					}
+				}
+				if (luck.speed<40) {
+					luck.speed=40;
+				};
+
+				luck.timer = setTimeout(roll,luck.speed);
+			}
+			return false;
+		}
+        luck.init();
+        luck.speed=100;
+		roll();
+    }
+    // 更新下注总和
+    _prototype.updateTableAllSum = function (index, number) {
+        index -= 1
+        this.tableAllSum._childs[index].visible = true
+        var lastNumber = this.tableAllSum._childs[index]._childs[0].text || 0
+        var newNumbber = parseInt(lastNumber) + parseInt(number)
+        this.tableAllSum._childs[index]._childs[0].text = newNumbber
+    }
+       // 发送筹码请求
+    _prototype.sendBetChipReq = function (index) {
+        console.log(index, this.currentChip)
+        var message = Pb.GuessBetRequest.create({
+            betPos: index,
+            betCount: this.currentChip
+        });
+        Luck.send(packPbMsg2(Pb.Id.GuessBetRequest, Pb.GuessBetRequest.encode(message).finish()));
     }
       // 通知回调
     _prototype.registNotis = function () {
@@ -140,6 +315,7 @@ var GuessView = (function (_super) {
         }));
         // 有人下注
         Luck.addHandle(new Luck.Handler(Pb.Id.Lucky12BetBroadcast, function (msg) {
+            console.log(msg.betPos);
             // Luck.alertView.show('有人下注')
             if (msg.userId != Luck.selfUserInfo.uid) {
                 var pos = []
@@ -159,7 +335,7 @@ var GuessView = (function (_super) {
             }
         }));
         // 下注回调
-        Luck.addHandle(new Luck.Handler(Pb.Id.Lucky12BetResponse, function (msg) {
+        Luck.addHandle(new Luck.Handler(Pb.Id.GuessBetResponse, function (msg) {
             if (msg.msg) {
                 Luck.alertView.show(msg.msg)
             } else {
@@ -169,30 +345,55 @@ var GuessView = (function (_super) {
         }));
 
         // 游戏结束
-        Luck.addHandle(new Luck.Handler(Pb.Id.Lucky12GameOverBroadcast, function (msg) {
+        Luck.addHandle(new Luck.Handler(Pb.Id.GuessGameOverBroadcast, function (msg) {
             Luck.alertView.show('停止下注')
             self.turnOffChipBoard()
-            self.bigPie.start(msg.result.result3Pos - 21, function () { })
-            self.middlePie.start(msg.result.result2Pos - 11, function () { })
-            self.smallPie.start(msg.result.result1Pos - 1, function () { })
+            self.showResult(msg.result);//显示结果列表
 
             setTimeout(function () {
-                var str = self.showLandRHirsory(msg)
+                // var str = self.showLandRHirsory(msg)
+                self.updateHistory();
                 self.historyList.text = str
             }, 10000);
             // 重置
             setTimeout(function () {
-                self.resetChipBoard()
+                self.clearBtnClick()
                 var v = new OverBoardView(msg.userList)
                 v.popup()
             }, 10000)
 
         }));
     }
+    // 显示历史信息
+    // _prototype.showLandRHirsory = function (msg) {
+        // var self = this;
+        
+        // var self = this
+        // var arr = []
+        // var object = msg.result
+        // var n = 0
+        // var bigArr = [self.manArr, self.luckArr, self.animalArr]
+        // for (var key in object) {
+        //     var element = object[key];
+        //     var smallArr = bigArr[n]
+        //     var index = parseInt(element) - (n * 10) - 1
+        //     if (smallArr.length == 2) index = index == 0 ? 1 : 0
+        //     arr.push(smallArr[index])
+        //     n++
+        //     if (n == 3) break
+        // }
+        // for (var i = 0; i < self.rightHistory._childs.length; i++) {
+        //     var label = self.rightHistory._childs[i]
+        //     label.text = arr[i]
+        // }
+        // self.leftHistory._childs[0].text = arr[0]
+        // self.leftHistory._childs[1].text = arr[1]
+        // return arr[0] + '·' + arr[1] + '·' + arr[2]
+    // }
     // 更新用户信息
     _prototype.updateUserInfo = function (user) {
         var dataArr = this.playerBox._childs
-        console.log(dataArr);
+        // console.log(dataArr);
         if (user) {
             if (user.seatStatus == 2) {
                 for (var i = 0; i < this.userAndPos.length; i++) {
@@ -227,16 +428,25 @@ var GuessView = (function (_super) {
             }
         }
     }
-      // 发送筹码请求
-    _prototype.sendBetChipReq = function (index) {
-        // console.log(index, this.currentChip)
-        if (index == 33) index = 21
-        if (index == 16) index = 11
-        var message = Pb.Lucky12BetRequest.create({
-            betPos: index,
-            betCount: this.currentChip
-        });
-        Luck.send(packPbMsg2(Pb.Id.Lucky12BetRequest, Pb.Lucky12BetRequest.encode(message).finish()));
+    // 更新历史记录
+    _prototype.updateHistory = function (dataArr) {
+        // console.log(dataArr);
+        
+        var self = this;
+        // console.log(this.historyList._childs);
+        
+        // for(var i=dataArr.length-1;i>-1;i--){
+        //     // console.log(dataArr[i]);
+        //     if(dataArr[i]>0&&dataArr[i]<6){
+        //         this.historyList._childs[i]._childs[0]._text = "小";
+        //     }else if(dataArr[i]>6&&dataArr[i]<12){
+        //         this.historyList._childs[i]._childs[0]._text = "大";
+        //     }else {
+        //         this.historyList._childs[i]._childs[0]._text = "發";
+        //     }
+           
+        // }
+        return dataArr
     }
      // 更新玩家列表
     _prototype.updateUserList = function (userList) {
@@ -276,32 +486,6 @@ var GuessView = (function (_super) {
                 self.turnOffChipBoard()
             }
         }, 1000)
-
-    }
-
-     // 猜大
-    _prototype.bigRectangleClick = function (ev) {
-        // var index = parseInt((this.getAngle(ev.stageX, ev.stageY) + 15) / 30)
-        // var str = this.animalArr[index] || this.animalArr[0]
-        // console.log(str, index)
-        // this.sendBetChipReq(index + 21)
-        // this.showBetChipResult(1, [3, index == 12 ? 0 : index])
-    }
-    // 猜发
-    _prototype.faRectangleClick = function (ev) {
-        // var index = parseInt((this.getAngle(ev.stageX, ev.stageY) + 36) / 72)
-        // var str = this.luckArr[index] || this.luckArr[0]
-        // console.log(str, index)
-        // this.sendBetChipReq(index + 11)
-        // this.showBetChipResult(1, [2, index == 5 ? 0 : index])
-    }
-    // 猜小
-    _prototype.smallRectangleClick = function (ev) {
-        // var index = parseInt(this.getAngle(ev.stageX, ev.stageY) / 180)
-        // var str = this.manArr[index] || this.manArr[0]
-        // console.log(str, index)
-        // this.sendBetChipReq(index == 0 ? 1 : 2)
-        // this.showBetChipResult(1, [1, index])
     }
       // 选择筹码
     _prototype.selectChip = function (ev) {
@@ -340,13 +524,13 @@ var GuessView = (function (_super) {
      // 打开下注
     _prototype.turnOnChipBoard = function () {
         this.bigRect.mouseEnabled = true
-        this.faRect.mouseEnabled = true
+        this.richRect.mouseEnabled = true
         this.smallRect.mouseEnabled = true
     }
     // 关闭下注
     _prototype.turnOffChipBoard = function () {
          this.bigRect.mouseEnabled = false;
-        this.faRect.mouseEnabled = false;
+        this.richRect.mouseEnabled = false;
         this.smallRect.mouseEnabled = false;
     }
       // 矩形添加点击遮罩

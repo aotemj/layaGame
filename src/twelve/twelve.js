@@ -79,7 +79,7 @@ var TwelveView = (function (_super) {
         self.updateUserList(msg.userList)       // 更新玩家信息
         var arr = self.updateHistory(msg.historyList) // 更新历史记录
         self.updateChip(msg.availableBetList)   // 更新筹码列表
-        console.log(arr)
+        // console.log(arr)
 
         if (msg.betRemainSecs > 0) {
             self.turnOnChipBoard()

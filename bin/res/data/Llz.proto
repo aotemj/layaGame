@@ -1,0 +1,38 @@
+syntax = "proto3";
+import "Common.proto";
+
+package proto_msg;
+option csharp_namespace = "Pb";
+
+message LlzEnterRoomRequest {
+}
+message LlzEnterRoomResponse {
+    int32   coin_count = 5;
+}
+//可下100, 1000, 1万
+message LlzBetRequest {
+    int32   bet_pos = 1;    //值为1-8之间的数字
+    int32   bet_count = 2; //下注数    值为1 10 50 100
+}
+message LlzBetResponse {
+    STATUS  status  = 1;    //1:成功  -1:失败
+    string  msg = 2;
+    repeated int32 bet_list = 3;    //1-8位置上的下注额
+    int32   bet_count = 4;
+    int32   coin_count = 5;
+}
+
+message LlzBeginRequest {   //开始
+}
+
+message LlzBeginResponse {
+    STATUS  status  = 1;    //1:成功  -1:失败
+    string  msg = 2;
+
+    repeated string result_list = 3;    //红、黄、蓝列表，每个里按rgb存
+    repeated int32 win_list = 4;    //赢金豆列表
+    int32 bet_count = 5;
+    int32 win_count = 6;
+    int32 coin_count = 7;
+}
+

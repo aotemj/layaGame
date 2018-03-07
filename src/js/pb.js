@@ -80,6 +80,20 @@ var Pb = (function () {
         this.New666BetResponse
         this.New666BetBroadcast
         this.New666GameOverBroadcast
+        this.LlzEnterRoomRequest
+        this.LlzEnterRoomResponse
+        this.LlzBetRequest
+        this.LlzBetResponse
+        this.LlzBeginRequest
+        this.LlzBeginResponse
+        this.AddressListRequest
+        this.AddressListResponse
+        this.AddressUpdateRequest
+        this.AddressUpdateResponse
+        this.AddressDefaultRequest
+        this.AddressDefaultResponse
+        this.AddressDeleteRequest
+        this.AddressDeleteResponse
         
         this.Id = (function () {
             let u2
@@ -163,6 +177,20 @@ var Pb = (function () {
                 this.New666BetResponse = 70
                 this.New666BetBroadcast = 71
                 this.New666GameOverBroadcast = 72
+                this.LlzEnterRoomRequest = 73
+                this.LlzEnterRoomResponse = 74
+                this.LlzBetRequest = 75
+                this.LlzBetResponse = 76
+                this.LlzBeginRequest = 77
+                this.LlzBeginResponse = 78
+                this.AddressListRequest = 79
+                this.AddressListResponse = 80
+                this.AddressUpdateRequest = 81
+                this.AddressUpdateResponse = 82
+                this.AddressDefaultRequest = 83
+                this.AddressDefaultResponse = 84
+                this.AddressDeleteRequest = 85
+                this.AddressDeleteResponse = 86
                 
             }
             return getInstance()
@@ -242,6 +270,20 @@ var Pb = (function () {
         this.New666BetResponse  = root.lookup("proto_msg.New666BetResponse")
         this.New666BetBroadcast  = root.lookup("proto_msg.New666BetBroadcast")
         this.New666GameOverBroadcast  = root.lookup("proto_msg.New666GameOverBroadcast")
+        this.LlzEnterRoomRequest  = root.lookup("proto_msg.LlzEnterRoomRequest")
+        this.LlzEnterRoomResponse  = root.lookup("proto_msg.LlzEnterRoomResponse")
+        this.LlzBetRequest  = root.lookup("proto_msg.LlzBetRequest")
+        this.LlzBetResponse  = root.lookup("proto_msg.LlzBetResponse")
+        this.LlzBeginRequest  = root.lookup("proto_msg.LlzBeginRequest")
+        this.LlzBeginResponse  = root.lookup("proto_msg.LlzBeginResponse")
+        this.AddressListRequest  = root.lookup("proto_msg.AddressListRequest")
+        this.AddressListResponse  = root.lookup("proto_msg.AddressListResponse")
+        this.AddressUpdateRequest  = root.lookup("proto_msg.AddressUpdateRequest")
+        this.AddressUpdateResponse  = root.lookup("proto_msg.AddressUpdateResponse")
+        this.AddressDefaultRequest  = root.lookup("proto_msg.AddressDefaultRequest")
+        this.AddressDefaultResponse  = root.lookup("proto_msg.AddressDefaultResponse")
+        this.AddressDeleteRequest  = root.lookup("proto_msg.AddressDeleteRequest")
+        this.AddressDeleteResponse  = root.lookup("proto_msg.AddressDeleteResponse")
         
     }
 
@@ -319,6 +361,20 @@ var Pb = (function () {
         if (msg_id == this.Id.New666BetResponse) { return this.New666BetResponse }
         if (msg_id == this.Id.New666BetBroadcast) { return this.New666BetBroadcast }
         if (msg_id == this.Id.New666GameOverBroadcast) { return this.New666GameOverBroadcast }
+        if (msg_id == this.Id.LlzEnterRoomRequest) { return this.LlzEnterRoomRequest }
+        if (msg_id == this.Id.LlzEnterRoomResponse) { return this.LlzEnterRoomResponse }
+        if (msg_id == this.Id.LlzBetRequest) { return this.LlzBetRequest }
+        if (msg_id == this.Id.LlzBetResponse) { return this.LlzBetResponse }
+        if (msg_id == this.Id.LlzBeginRequest) { return this.LlzBeginRequest }
+        if (msg_id == this.Id.LlzBeginResponse) { return this.LlzBeginResponse }
+        if (msg_id == this.Id.AddressListRequest) { return this.AddressListRequest }
+        if (msg_id == this.Id.AddressListResponse) { return this.AddressListResponse }
+        if (msg_id == this.Id.AddressUpdateRequest) { return this.AddressUpdateRequest }
+        if (msg_id == this.Id.AddressUpdateResponse) { return this.AddressUpdateResponse }
+        if (msg_id == this.Id.AddressDefaultRequest) { return this.AddressDefaultRequest }
+        if (msg_id == this.Id.AddressDefaultResponse) { return this.AddressDefaultResponse }
+        if (msg_id == this.Id.AddressDeleteRequest) { return this.AddressDeleteRequest }
+        if (msg_id == this.Id.AddressDeleteResponse) { return this.AddressDeleteResponse }
         
     }
 

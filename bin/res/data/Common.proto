@@ -17,6 +17,7 @@ enum GAME_TYPE {
     LUCKY12 = 1;    //十二生肖
     GUESS = 2;      //猜大小
     NEW666 = 3;     //新666
+    Llz = 4;     //连连转
 }
 
 enum ROOM_STATUS {
@@ -365,13 +366,53 @@ message MallItemListResponse {
     repeated GoodsItem item_list = 5;
 }
 
+//地址相关
+message AddressItem {
+    int32   Id = 1;
+    string  Realname = 2;
+    string  Telephone = 3;
+    string  RegionInfo = 4;
+    string  AddressInfo = 5;
+    string  Postcode = 6;
+
+    bool    IsDefault = 10; //是否默认地址    只有设为默认后，值才改变
+}
+message AddressListRequest {
+}
+message AddressListResponse {
+    repeated AddressItem address_list = 1;
+}
+//新增、修改地址都这个接口
+message AddressUpdateRequest {
+    AddressItem address_item = 1;
+}
+message AddressUpdateResponse {
+    STATUS status = 1;
+    string msg = 2;
+}
+//设置默认地址
+message AddressDefaultRequest {
+    int32 address_id = 1;
+}
+message AddressDefaultResponse {
+    STATUS status = 1;
+    string msg = 2;
+}
+message AddressDeleteRequest {
+    int32 address_id = 1;
+}
+message AddressDeleteResponse {
+    STATUS status = 1;
+    string msg = 2;
+}
+
+
+
+
 //兑换下单接口
 message MallOrderRequest {
     int32   goods_id = 1;   //要兑换的商品ID
-    string  real_name = 2;  //收货人姓名
-    string  telephone = 3;  //收货人电话
-    string  address = 4;  //收货地址
-    string  weixin  = 5;    //微信号
+    int32  address_id = 2;  //对应地址ID
 }
 message MallOrderResponse {
     STATUS status = 1;

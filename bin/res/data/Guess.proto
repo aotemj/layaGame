@@ -56,6 +56,8 @@ message GuessGameOverBroadcast {
     int32   coin_count = 2;
     GuessPos   result = 3;
     int32   result_num = 4;
+
+    repeated GuessPos   history_list = 10;
 }
 
 

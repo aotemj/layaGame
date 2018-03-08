@@ -125,7 +125,14 @@ var IndexView = (function (_super) {
             }
             // 666
             if (tab.tag == 4) {
-
+                // 进入房间
+                // var message = Pb.GuessEnterRoomRequest.create({});
+                // Luck.send(packPbMsg2(Pb.Id.GuessEnterRoomRequest, Pb.GuessEnterRoomRequest.encode(message).finish()));
+                // Luck.addHandle(new Luck.Handler(Pb.Id.GuessEnterRoomResponse, function (msg) {
+					// console.log(msg)
+                    Luck.luckyView = new LuckyView()
+                    Laya.stage.addChild(Luck.luckyView)
+                // }));
             }
 
             // 我的

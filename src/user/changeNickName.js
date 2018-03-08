@@ -15,10 +15,12 @@ var  ChangeNickNameView = (function (_super) {
     _prototype.init = function () {
         Laya.stage.bgColor = '#fff'
         var sp = new Laya.Sprite();
-        sp.graphics.drawCircle(0, 0, 60, '#fff000', null)
-    }
+        sp.graphics.drawCircle(0, 0, 60, '#fff000', null);
+        console.log(this);
 
-    
+        // 获取用户昵称
+        this.textarea.prompt="456";
+    }
 
 
     return ChangeNickName;

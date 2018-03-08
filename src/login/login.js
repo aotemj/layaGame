@@ -19,6 +19,7 @@ var LoginView = (function (_super) {
         Luck.addHandle(new Luck.Handler(Pb.Id.LoginResponse, function (msg) {
             if (msg.status == 1) {
                 Luck.selfUserInfo = msg.userInfo
+                console.log();
                 self.removeSelf()
                 Luck.indexView = new IndexView()
                 Laya.stage.addChild(Luck.indexView)
@@ -49,7 +50,6 @@ var LoginView = (function (_super) {
                 dev_name: navigator.userAgent
             });
         Luck.send(packPbMsg2(Pb.Id.LoginRequest, Pb.LoginRequest.encode(message).finish()));
-
     }
     // 注册
     _prototype.registBtnClick = function () {
@@ -71,3 +71,4 @@ var LoginView = (function (_super) {
 
     return Login;
 })(ui.login.loginUI);
+// var userInfo ='123';

@@ -26,6 +26,8 @@ var UserView = (function (_super) {
             tab.tag = i + 1
             tab.on(Laya.Event.CLICK, this, this.tabBtnClick, [tab])
         }
+        var message = Pb.Lucky12EnterRoomRequest.create({});
+        // console.log(userInfo);
     }
 
     // tabBar

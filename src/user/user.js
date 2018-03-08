@@ -6,7 +6,10 @@ var UserView = (function (_super) {
         User.super(this);
         // this.productList.vScrollBarSkin = ''
         // this.indexBtn.on(Laya.Event.CLICK, this, this.indexBtnClick)
-        this.tabBtnArr = [this.indexBtn, this.twelveBtn, this.guessBtn, this.sixBtn, this.userBtn]
+        //  this.richRect.on(Laya.Event.CLICK, this, this.richRectClick)
+        console.log(this);
+        this.changeNickNameBtn.on(Laya.Event.CLICK,this,this.changeNickNameBtnClick)
+        this.tabBtnArr = [this.indexBtn, this.twelveBtn, this.guessBtn, this.sixBtn, this.userBtn];
         this.init()
     }
     Laya.class(User, 'User', _super);
@@ -63,7 +66,14 @@ var UserView = (function (_super) {
             }
         }
     }
-
+    _prototype.changeNickNameBtnClick = function(){
+        //移除当前视图 
+        Luck.userView.removeSelf()
+        Luck.userView = null
+        // 添加新视图
+        Luck.changeNickNameView = new ChangeNickNameView()
+        Laya.stage.addChild(Luck.changeNickNameView)
+    }
 
     return User;
 })(ui.user.userUI);

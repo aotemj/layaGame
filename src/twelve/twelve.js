@@ -351,16 +351,16 @@ var TwelveView = (function (_super) {
             box._childs[1]._childs[0].text = sum
         }
 
-        this.updateTableAllSum(i, this.currentChip)
+        // this.updateTableAllSum(i, this.currentChip)
     }
     // 更新下注总和
-    _prototype.updateTableAllSum = function (index, number) {
-        index -= 1
-        this.tableAllSum._childs[index].visible = true
-        var lastNumber = this.tableAllSum._childs[index]._childs[0].text || 0
-        var newNumbber = parseInt(lastNumber) + parseInt(number)
-        this.tableAllSum._childs[index]._childs[0].text = newNumbber
-    }
+    // _prototype.updateTableAllSum = function (index, number) {
+    //     index -= 1
+    //     this.tableAllSum._childs[index].visible = true
+    //     var lastNumber = this.tableAllSum._childs[index]._childs[0].text || 0
+    //     var newNumbber = parseInt(lastNumber) + parseInt(number)
+    //     this.tableAllSum._childs[index]._childs[0].text = newNumbber
+    // }
     // 外环
     _prototype.bigCircleClick = function (ev) {
         var index = parseInt((this.getAngle(ev.stageX, ev.stageY) + 15) / 30)

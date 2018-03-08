@@ -33,6 +33,7 @@ var GuessView = (function (_super) {
         self.showRestTime(msg.betRemainSecs)       // 剩余时间
         self.updateUserList(msg.userList)       // 更新玩家信息
         self.arr = self.updateHistory(msg.historyList) // 更新历史记录
+        // self.showLandRHirsory(msg)
         console.log(self.arr);
       
         self.updateChip(msg.availableBetList)   // 更新筹码列表
@@ -66,7 +67,7 @@ var GuessView = (function (_super) {
     }
      // 战绩
     _prototype.warHistoryBtnClick = function () {
-        Luck.warHistory = new WarHistoryView()
+        Luck.warHistory = new WarHistoryViewer()
         Luck.warHistory.popup()
     }
     // "大"矩形点击
@@ -293,19 +294,21 @@ var GuessView = (function (_super) {
         }));
 
         // 游戏结束
-        Luck.addHandle(new Luck.Handler(Pb.Id.GuessGameOverBroadcast, function (msg) {
+        Luck.addHandle(new Luck.Handler(Pb.Id.GuessGameOverBroadcast, (msg)=> {
             Luck.alertView.show('停止下注')
             self.turnOffChipBoard()
             self.showResult(msg.result);//显示结果列表
+            // 
+           
+            // Luck.selfUserInfo.coinCount = msg.coinCount
             // console.log(msg.historyList);
-            setTimeout(function () {
-                // var str = self.showLandRHirsory(msg)
-                  self.showLandRHirsory(msg)
-                // self.historyList.text = str
-            }, 6000);
+            
             // 重置
             setTimeout(function () {
+                self.selfMoney.text = msg.coinCount
+                self.showLandRHirsory(msg)
                 self.clearBtnClick();
+                self.hiddenResult();
                 var v = new OverBoardView(msg.userList)
                 v.popup()
             }, 6000)
@@ -314,36 +317,49 @@ var GuessView = (function (_super) {
     }
     // 显示历史信息
     _prototype.showLandRHirsory = function (msg) {
-        var result = msg.result;
-        // console.log(result)
-        if(result>0&&result<6){
-            this.historyList._childs[0]._text="小";
-            // this.historyList._childs[0]._style.color="#f9ce34"
-             this.historyList._childs[0]._style.color="#000"
-        }else if(result>6&&result<12){
-            this.historyList._childs[0]._text="大";
-            // this.historyList._childs[0]._style.color="#f47c6b"
-            this.historyList._childs[0]._style.color="#000"
-        }else {
-            this.historyList._childs[0]._text="發";
-            // this.historyList._childs[0]._style.color="#3bc7c6"
-            this.historyList._childs[0]._style.color="#000"
+
+        var self = this;
+        // 清除之前所有的记录
+        for(var i=0;i<self.historyList._childs.length;i++){
+            this.historyList._childs[i].text ="";
         }
-       console.log(msg.historyList);
+        // console.log(this);
+        var result = msg.result;
+        // console.log(result);
+        // console.log(self.historyList._childs[0]);
+        //  this.historyList._childs[16].text="123";
+        //  this.historyList._childs[16]._style.color="#f40"
+        if(result>0&&result<6){
+            this.historyList._childs[0].text="小";
+            this.historyList._childs[0]._style.color="#f9ce34"
+            // this.historyList._childs[0]._style.color="#000"
+        }else if(result>6&&result<12){
+           this.historyList._childs[0].text="大";
+            this.historyList._childs[0]._style.color="#f47c6b"
+            //  this.historyList._childs[0]._style.color="#000"
+        }else {
+             this.historyList._childs[0].text="發";
+            this.historyList._childs[0]._style.color="#3bc7c6"
+        //    self.historyList._childs[0]._style.color="#000"
+        }
+    //    console.log(msg.historyList);
        var arr = msg.historyList||[];
        var count = arr.length;
-
-       for(var i=count-1;i>0;i--){
+    //    console.log(count);
+       for(var i=count-1;i>-1;i--){
            var target = arr[i];
-            if(target>0&&taget<6){
-                this.historyList._childs[count-1-i]._text="小";
-                this.historyList._childs[count-1-i]._style.color="#000"
+            if(target>0&&target<6){
+                 this.historyList._childs[count-1-i].text = "小";
+                // this.historyList._childs[count-1-i]._style.color="#000"
+                 this.historyList._childs[count-1-i]._style.color="#f9ce34"
             }else if(target>6&&target<12){
-                this.historyList._childs[count-1-i]._text="大";
-                this.historyList._childs[count-1-i]._style.color="#000"
+                this.historyList._childs[count-1-i].text="大";
+                // this.historyList._childs[count-1-i]._style.color="#000"
+                 this.historyList._childs[count-1-i]._style.color="#f47c6b"
             }else{
-                this.historyList._childs[count-1-i]._text="發";
-                this.historyList._childs[count-1-i]._style.color="#000"
+                this.historyList._childs[count-1-i].text="發";
+                // this.historyList._childs[count-1-i]._style.color="#000"
+                 this.historyList._childs[count-1-i]._style.color="#3bc7c6"
             }
        }
     }
@@ -358,6 +374,7 @@ var GuessView = (function (_super) {
     }
     // 更新用户信息
     _prototype.updateUserInfo = function (user) {
+        console.log(user);
         var dataArr = this.playerBox._childs
         // console.log(dataArr);
         if (user) {
@@ -369,7 +386,7 @@ var GuessView = (function (_super) {
                         obj.uid = ''
                         obj.entry._childs[1].text = '用戶名'
                         obj.entry._childs[0].skin = 'comp/round/board/circle1.png'
-                        obj.entry._childs[0].scale(1, 1)
+                        obj.entry._childs[0].scale(1,1)
                     }
                 }
             } else if (user.seatStatus == 3) {
@@ -394,9 +411,47 @@ var GuessView = (function (_super) {
             }
         }
     }
+    // 其他人下注
+    _prototype.showOtherChip = function (pos, betCount, who) {
+        // console.log(pos, betCount)
+        // var i = pos[0]
+        // var direction = pos[1]
+        // if (i == 1) {
+        //     var circle = this.smallCircle
+        // } else if (i == 2) {
+        //     var circle = this.middleCircle
+        // } else {
+        //     var circle = this.bigCircle
+        // }
+
+        // var box = circle.getChildByName('resultBox')._childs[direction - 1]
+        // box._childs[0].visible = true   // 显示金豆
+
+        // this.updateTableAllSum(i, betCount)
+
+        // var someone
+        // for (var i = 0; i < this.userAndPos.length; i++) {
+        //     var o = this.userAndPos[i]
+        //     if (parseInt(o.uid) == who) {
+        //         someone = o.entry
+        //         break
+        //     }
+        // }
+
+        // var x = box._childs[0].x + box._childs[0].parent.x + box._childs[0].parent.parent.x - someone.x
+        // var y = someone.y - (box._childs[0].y + box._childs[0].parent.y + box._childs[0].parent.parent.y)
+        // console.log(x, y)
+        // if (!box._childs[0].isAnimating) {
+        //     box._childs[0].isAnimating = true
+        //     Laya.Tween.from(box._childs[0], { x: x * -1, y: y * -1 }, 500, Laya.Ease.linearInOut, new Laya.Handler(this, function () {
+        //         box._childs[0].isAnimating = false
+        //     }))
+        // }
+
+    }
     // 更新历史记录
     _prototype.updateHistory = function (dataArr) {
-        // console.log(dataArr);
+        console.log(dataArr.length);
         var self = this;
         let historyBox = self.historyList;
         for(var i=dataArr.length-1;i>-1;i--){
@@ -428,7 +483,7 @@ var GuessView = (function (_super) {
     }
        // 更新筹码
     _prototype.updateChip = function (dataArr) {
-        // console.log(dataArr)
+        console.log(dataArr)
         for (var i = 0; i < dataArr.length; i++) {
             var box = this.chipBox._childs[i]
             var str = dataArr[i]

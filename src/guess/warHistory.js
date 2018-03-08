@@ -1,5 +1,5 @@
 
-var WarHistoryView = (function (_super) {
+var WarHistoryViewer = (function (_super) {
 
     // _super.uiView = Luck.filterImgAddVersion(_super.uiView)
     function WarHistory() {
@@ -15,15 +15,17 @@ var WarHistoryView = (function (_super) {
     _prototype.init = function () {
         var self = this
         var message = Pb.GameResultListRequest.create({
-            gameTypeId: 1,
+            gameTypeId: 2,
         });
         Luck.send(packPbMsg2(Pb.Id.GameResultListRequest, Pb.GameResultListRequest.encode(message).finish()));
 
         Luck.addHandle(new Luck.Handler(Pb.Id.GameresultListResponse, function (msg) {
             var dataArr = msg.resultList
+            console.log(dataArr);
             var arr = []
             for (var i = 0; i < dataArr.length; i++) {
                 var game = dataArr[i]
+                // console.log(game);
                 arr.push({
                     img:{skin:'comp/headImg/'+Luck.selfUserInfo.avatarId+'.png'},
                     time: { text:  game.gameTime },

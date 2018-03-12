@@ -130,8 +130,8 @@ var IndexView = (function (_super) {
                 // Luck.send(packPbMsg2(Pb.Id.GuessEnterRoomRequest, Pb.GuessEnterRoomRequest.encode(message).finish()));
                 // Luck.addHandle(new Luck.Handler(Pb.Id.GuessEnterRoomResponse, function (msg) {
 					// console.log(msg)
-                    Luck.luckyView = new LuckyView()
-                    Laya.stage.addChild(Luck.luckyView)
+                    // Luck.luckyView = new LuckyView()
+                    // Laya.stage.addChild(Luck.luckyView)
                 // }));
             }
 

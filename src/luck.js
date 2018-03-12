@@ -9,7 +9,8 @@ String.prototype.endWith = function (str) {
 var Luck = {
     // url:"ws://www.jskjjsql.cn:4565",
     // url:'ws://127.0.0.1:3653',
-    url: 'ws://192.168.1.108:3573',
+    // url: 'ws://192.168.1.108:3573',
+    url:'ws://192.168.1.150:3573',
     baseUrl: '192.168.1.138/upload/',
     alertTimeoutArr: [],
     currentPage: -1,

@@ -2,7 +2,7 @@
     "x":0,
     "type":"View",
     "selectedBox":1,
-    "selecteID":65,
+    "selecteID":327,
     "props":{"width":720,"sceneColor":"#000000","height":1180},
     "nodeParent":-1,
     "label":"View",
@@ -1576,7 +1576,7 @@
                                         }]
                                 }]
                         }],
-                    "$HIDDEN":false
+                    "$HIDDEN":true
                 }],
             "$HIDDEN":false
         },
@@ -2400,6 +2400,32 @@
                         }],
                     "$HIDDEN":false
                 }]
+        },
+        {
+            "x":15,
+            "type":"Label",
+            "props":{"y":335,"x":48,"text":"X18","rotation":-48,"fontSize":20,"color":"#ffa45b"},
+            "nodeParent":1,
+            "label":"Label",
+            "isDirectory":false,
+            "isAniNode":true,
+            "hasChild":false,
+            "compId":326,
+            "child":[
+                ]
+        },
+        {
+            "x":15,
+            "type":"Label",
+            "props":{"y":308,"x":645,"text":"X81","rotation":49,"fontSize":20,"color":"#ffa45b"},
+            "nodeParent":1,
+            "label":"Label",
+            "isDirectory":false,
+            "isAniNode":true,
+            "hasChild":false,
+            "compId":327,
+            "child":[
+                ]
         }],
     "animations":[
         {

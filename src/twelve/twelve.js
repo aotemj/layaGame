@@ -37,7 +37,7 @@ var TwelveView = (function (_super) {
         self.bigPie = new Luck.createPie({
             pie: {
                 length: 12,
-                color: '#00ffff',
+                color: '#4f292f',
                 parent: self.bigCircle.getChildByName('pieBox'),
                 centerX: 328,
                 centerY: 328,
@@ -50,7 +50,7 @@ var TwelveView = (function (_super) {
         self.middlePie = new Luck.createPie({
             pie: {
                 length: 5,
-                color: '#00ffff',
+                color: '#4f292f',
                 parent: self.middleCircle.getChildByName('pieBox'),
                 centerX: 207.5,
                 centerY: 207.5,
@@ -63,7 +63,7 @@ var TwelveView = (function (_super) {
         self.smallPie = new Luck.createPie({
             pie: {
                 length: 2,
-                color: '#00ffff',
+                color: '#4f292f',
                 parent: self.smallCircle.getChildByName('pieBox'),
                 centerX: 106,
                 centerY: 106,
@@ -364,8 +364,9 @@ var TwelveView = (function (_super) {
     // 外环
     _prototype.bigCircleClick = function (ev) {
         var index = parseInt((this.getAngle(ev.stageX, ev.stageY) + 15) / 30)
+        console.log(index);
         var str = this.animalArr[index] || this.animalArr[0]
-        console.log('-----');
+        // console.log('-----');
         console.log(str, index)
         this.sendBetChipReq(index + 21)
         this.showBetChipResult(1, [3, index == 12 ? 0 : index])
@@ -373,6 +374,7 @@ var TwelveView = (function (_super) {
     // 中环
     _prototype.middleCircleClick = function (ev) {
         var index = parseInt((this.getAngle(ev.stageX, ev.stageY) + 36) / 72)
+        console.log(index);
         var str = this.luckArr[index] || this.luckArr[0]
         console.log(str, index)
         this.sendBetChipReq(index + 11)
@@ -381,6 +383,7 @@ var TwelveView = (function (_super) {
     // 内环
     _prototype.smallCircleClick = function (ev) {
         var index = parseInt(this.getAngle(ev.stageX, ev.stageY) / 180)
+        console.log(index);
         var str = this.manArr[index] || this.manArr[0]
         // console.log(str, index)
         this.sendBetChipReq(index == 0 ? 1 : 2)
